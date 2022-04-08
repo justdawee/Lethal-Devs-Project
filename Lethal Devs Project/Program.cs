@@ -5,28 +5,33 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
+
 namespace Lethal_Devs_Project
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            MySqlConnection(@"server=localhost;userid=lethaldevs;password=secret;database=vms_lethaldevs");
+            Application.Run(new AuthorizationPanel());
+
+            //MySQL szerverhez szükséges adatok
+            const string hostname = "localhost";
+            const string userid = "lethaldevs";
+            const string password = "YR*_D61xFdDPa[0X";
+            const string database = "vms_lethaldevs";
+
+            //Csatlakozás metódus meghívása az adatokkal.
+            InitMySqlConnection($@"server={hostname};userid={userid};password={password};database={database}");
+            
         }
 
-        static void MySqlConnection(string connection)
+        static void InitMySqlConnection(string connection)
         {
-            var mysqlcon = new MySqlConnection(connection);
-            mysqlcon.Open();
-
-            Console.WriteLine($"MySQL version : {mysqlcon.ServerVersion}");
+            var mysqlcon = new MySqlConnection(connection); //kapcsolat objektum létrehozás
+            mysqlcon.Open(); //kapcsolat megnyitása a szerverrel
         }
     }
 }
