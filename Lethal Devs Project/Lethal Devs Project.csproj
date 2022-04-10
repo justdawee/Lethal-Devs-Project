@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C2479541-A0C0-4DC3-AAC5-7D548FC6B6D6}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Lethal_Devs_Project</RootNamespace>
     <AssemblyName>Lethal Devs Project</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -49,6 +49,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>appicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -131,16 +134,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminUI.Designer.cs">
+      <DependentUpon>AdminUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuthorizationPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AuthorizationPanel.Designer.cs">
       <DependentUpon>AuthorizationPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogWriter.cs" />
+    <Compile Include="LostPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LostPasswordForm.Designer.cs">
+      <DependentUpon>LostPasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AuthorizationPanel.resx">
       <DependentUpon>AuthorizationPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LostPasswordForm.resx">
+      <DependentUpon>LostPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

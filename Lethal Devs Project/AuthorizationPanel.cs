@@ -7,61 +7,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Media;
+using System.IO;
 
 namespace Lethal_Devs_Project
 {
     public partial class AuthorizationPanel : Form
     {
-        bool drag = false;
-        Point start_point = new Point(0, 0);
+        static SqlConnection conn = new SqlConnection(); //sql csatlakozás objektum
         public AuthorizationPanel()
         {
             InitializeComponent();
         }
-
-        private void AuthorizationPanel_MouseDown(object sender, MouseEventArgs e)
+        private void AuthorizationPanel_Load(object sender, EventArgs e)
         {
-            drag = true; 
-            start_point = new Point(e.X, e.Y);
-        }
 
-        private void AuthorizationPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (drag)
-            {
-                Point p = PointToScreen(e.Location);
-                this.Location = new Point(p.X - start_point.X, p.Y - start_point.Y);
-            }
         }
-
-        private void AuthorizationPanel_MouseUp(object sender, MouseEventArgs e)
-        {
-            drag = false;
-        }
-
         private void exitBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit(); // kilépés a programból
+            this.Close(); // kilépés a programból
+        }
+
+        public void ShowMessage(string title, string message)
+        {
+            MessageBox.Show(title, message);
         }
 
         private void showPwPic_MouseDown(object sender, MouseEventArgs e)
         {
-            passwordBox.PasswordChar = '\u0000'; //amíg a balklikk lenyomva marad, eltűnik a jelszóról a titkosítás.
+            passwordBox.PasswordChar = '\0';
         }
 
         private void showPwPic_MouseUp(object sender, MouseEventArgs e)
         {
-            passwordBox.PasswordChar = '*'; //ha már nem nyomjuk a balklikket akkor tegye vissza a titkosítást.
-        }
-
-        private void loginBtn_Click(object sender, EventArgs e)
-        {
-            //TODO
+            passwordBox.PasswordChar = '*';
         }
 
         private void forgotBtn_Click(object sender, EventArgs e)
         {
-            //TODO
+            LostPasswordForm lostpwform = new LostPasswordForm();    //Create the New Form Object
+            this.Hide();    //Hide the Old Form
+            lostpwform.ShowDialog();    //Show the New Form
+            this.Close();    //Close the Old Form
         }
+
+        public static void Login(string username, string password)
+        {
+            var _username = username;
+            var _password = password;
+
+            if (conn.AttemptLogin(_username, _password))
+            {
+                //TODO
+                Console.WriteLine("Successful Login");
+            }
+        }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            Login(usernameBox.Text, passwordBox.Text);
+        }
+
     }
+
 }
