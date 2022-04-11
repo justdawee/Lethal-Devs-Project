@@ -10,6 +10,7 @@ namespace Lethal_Devs_Project
     internal class SqlConnection
     {
         AuthorizationPanel panel = new AuthorizationPanel(); //Üzenet kiíráshoz példányosítani kell a form-ot.
+        LogWriter log = new LogWriter(); //log üzenetekhez szükséges objektum
 
         private MySqlConnection connection;
         private string server;
@@ -35,7 +36,6 @@ namespace Lethal_Devs_Project
             try
             {
                 connection.Open();
-                Console.WriteLine("Sikeres MySQL csatlakozás! :)");
                 return true;
             }
             catch (MySqlException e)
@@ -43,13 +43,13 @@ namespace Lethal_Devs_Project
                 switch (e.Number)
                 {
                     case 0:
-                        //Server Conn Error
-                        Console.WriteLine("Server Connection Error");
+                        //Szerver csatlakozási hiba
+                        log.WriteLog("[MYSQL] HIBA: CSATLAKOZÁS SIKERTELEN!\n\t" + e.Message);
                         break;
 
                     case 1045:
-                        //Wrong Username or Password
-                        Console.WriteLine("Wrong Username or Password");
+                        //Hibás felhasználó vagy jelszó
+                        log.WriteLog("[MYSQL] HIBA: ROSSZ FELHASZNÁLÓNÉV/JELSZÓ PÁROS!\n\t" + e.Message);
                         break;
                     default:
                         Console.WriteLine(e + "\t" + e.Number);
@@ -68,38 +68,20 @@ namespace Lethal_Devs_Project
             }
             catch (MySqlException e)
             {
-                Console.WriteLine(e.ToString());
+                log.WriteLog("[MYSQL] HIBA: NEM SIKERÜLT BEZÁRNI A KAPCSOLATOT!\n\t" + e.Message);
                 return false;
             }
         }
 
-        public bool ReadDB()
+        public void Query(string query)
         {
-            string query = "SELECT * FROM users";
-            List<string>[] LoginInfo = new List<string>[2];
-            LoginInfo[0] = new List<string>();
-            LoginInfo[1] = new List<string>();
             if (this.OpenConnection() == true)
             {
-                //Console.WriteLine("Connection Opened");
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-                    //Console.WriteLine("Data Reader Reading...");
-                    LoginInfo[0].Add(dataReader["username"] + "");
-                    LoginInfo[1].Add(dataReader["password"] + "");
-                }
-                for (int i = 0; i < LoginInfo[0].Count; i++)
-                {
-                    Console.WriteLine("Username = " + LoginInfo[0][i] + "; Password = " + LoginInfo[1][i] + ";");
-                }
-                dataReader.Close();
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
                 this.CloseConnection();
-                return true;
             }
-            return false;
         }
 
         public bool AttemptLogin(string username, string password)
@@ -125,16 +107,15 @@ namespace Lethal_Devs_Project
                 if (password == LoginInfo[0][0] & LoginInfo[0][0] != "")
                 {
                     Console.WriteLine(LoginInfo[0][0]);
-                    Console.WriteLine("Sikeres bejelentkezés!");
                     return true;
                 }
                 else if (LoginInfo[0][0] == "")
                 {
-                    Console.WriteLine("Nincs ilyen felhasználó!");
+                    panel.ShowMessage("Nincs ilyen felhasználó!", "HIBA");
                 }
                 else
                 {
-                    Console.WriteLine("Hibás felhasználónév/jelszó.");
+                    panel.ShowMessage("Hibás felhasználónév/jelszó.", "HIBA");
                 }
             }
             return false;
