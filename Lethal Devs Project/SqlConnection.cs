@@ -9,14 +9,16 @@ namespace Lethal_Devs_Project
 {
     internal class SqlConnection
     {
-        AuthorizationPanel panel = new AuthorizationPanel(); //Üzenet kiíráshoz példányosítani kell a form-ot.
+        LoginForm panel = new LoginForm(); //Üzenet(messagebox) kiíráshoz kell
         LogWriter log = new LogWriter(); //log üzenetekhez szükséges objektum
+        Encryption encryption = new Encryption(); //jelszó titkosításhoz szükséges
 
         private MySqlConnection connection;
         private string server;
         private string database;
         private string uid;
         private string password;
+        private string port;
 
         public SqlConnection()
         {
@@ -24,9 +26,11 @@ namespace Lethal_Devs_Project
             database = "vms_lethaldevs";
             uid = "lethaldevs";
             password = "YR*_D61xFdDPa[0X";
+            port = "3306";
+
             string connectionString;
             connectionString = "server=" + server + ";" + "user=" + uid + ";" + "database=" +
-            database + ";" + "port=3306;" + "password=" + password + ";";
+            database + ";" + "port=" + port + ";" + "password=" + password + ";";
 
             connection = new MySqlConnection(connectionString);
         }
@@ -44,17 +48,20 @@ namespace Lethal_Devs_Project
                 {
                     case 0:
                         //Szerver csatlakozási hiba
-                        log.WriteLog("[MYSQL] HIBA: CSATLAKOZÁS SIKERTELEN!\n\t" + e.Message);
+                        panel.ShowMessage("[MYSQL] HIBA: CSATLAKOZÁS SIKERTELEN!\nNézz log-ot a részletekért.", "HIBA");
+                        log.WriteLog("[MYSQL] HIBA: CSATLAKOZÁS SIKERTELEN!\n" + e.Message);
                         break;
-
                     case 1045:
                         //Hibás felhasználó vagy jelszó
-                        log.WriteLog("[MYSQL] HIBA: ROSSZ FELHASZNÁLÓNÉV/JELSZÓ PÁROS!\n\t" + e.Message);
+                        panel.ShowMessage("[MYSQL] HIBA: ROSSZ FELHASZNÁLÓNÉV/JELSZÓ PÁROS!\n", "HIBA");
+                        log.WriteLog("[MYSQL] HIBA: ROSSZ FELHASZNÁLÓNÉV/JELSZÓ PÁROS!\n" + e.Message);
                         break;
                     default:
-                        Console.WriteLine(e + "\t" + e.Number);
+                        panel.ShowMessage("[MYSQL] HIBA: " + e + "\t" + e.Number, "HIBA");
+                        log.WriteLog("[MYSQL] HIBA: " + e + "\t" + e.Number);
                         break;
                 }
+                panel.exitApp();
                 return false;
             }
         }
@@ -68,6 +75,7 @@ namespace Lethal_Devs_Project
             }
             catch (MySqlException e)
             {
+                panel.ShowMessage("[MYSQL] HIBA: NEM SIKERÜLT BEZÁRNI A KAPCSOLATOT!\n\t" + e.Message, "HIBA");
                 log.WriteLog("[MYSQL] HIBA: NEM SIKERÜLT BEZÁRNI A KAPCSOLATOT!\n\t" + e.Message);
                 return false;
             }
@@ -86,13 +94,14 @@ namespace Lethal_Devs_Project
 
         public bool AttemptLogin(string username, string password)
         {
+            var password_encrypted = encryption.EncryptString(password);
             string query = "SELECT * FROM users WHERE (username = '" + username + "')";
 
             List<string>[] LoginInfo = new List<string>[1];
             LoginInfo[0] = new List<string>();
             LoginInfo[0].Add("");
 
-            if (this.OpenConnection() == true)
+            if (this.OpenConnection())
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -101,15 +110,14 @@ namespace Lethal_Devs_Project
                 {
                     LoginInfo[0][0] = dataReader["password"] + "";
                 }
-
                 dataReader.Close();
                 this.CloseConnection();
-                if (password == LoginInfo[0][0] & LoginInfo[0][0] != "")
+
+                if (password_encrypted == LoginInfo[0][0] & LoginInfo[0][0] != "") // ha a jelszó helyes akkor true
                 {
-                    Console.WriteLine(LoginInfo[0][0]);
-                    return true;
+                    return true; //helyes belépési adatok
                 }
-                else if (LoginInfo[0][0] == "")
+                else if (LoginInfo[0][0] == "") // ha üres a mező, akkor nincs ilyen felhasználó az adatbázisban
                 {
                     panel.ShowMessage("Nincs ilyen felhasználó!", "HIBA");
                 }
@@ -118,22 +126,69 @@ namespace Lethal_Devs_Project
                     panel.ShowMessage("Hibás felhasználónév/jelszó.", "HIBA");
                 }
             }
-            return false;
+            return false; // hibás belépési adatok
         }
 
-        public bool CreateUser(string username, string password, DateTime birthdate, string address, DateTime regdate, string phonenumber, string email)
+        public List<string> getUserData(string username, string[] mitkeres)
         {
-            string query = "INSERT INTO users (username, password, birthdate, address, regdate, phonenumber, email) VALUES ('" + username + "','" + password + "','" + birthdate + "','" + address + "','" + regdate + "','" + phonenumber + "','" + email + "')";
-            if (this.OpenConnection() == true)
+            var found = new List<string>();
+            var query = "SELECT * FROM users WHERE (username = '" + username + "')";
+
+            if (this.OpenConnection())
             {
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.CommandText = query;
-                cmd.Connection = connection;
-                cmd.ExecuteNonQuery();
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    for (int i = 0; i < mitkeres.Length; i++)
+                    {
+                        found.Add(dataReader[$"{mitkeres[i]}"] + "");
+                    }
+                }
+                dataReader.Close();
                 this.CloseConnection();
-                return true;
             }
-            return false;
+            return found;
         }
+
+        public void loadAllUserData(string user)
+        {
+            string[] read = new string[] {
+                "id",
+                "username",
+                "password",
+                "admin",
+                "birthdate",
+                "address",
+                "regdate",
+                "phonenumber",
+                "email"
+            };
+
+            var userdata = getUserData(user, read);
+
+            User.UserInstance.Id = Convert.ToInt32(userdata[0]);
+            User.UserInstance.Username = userdata[1];
+            User.UserInstance.Password = userdata[2];
+            User.UserInstance.Admin = Convert.ToBoolean(userdata[3]);
+            User.UserInstance.Birthdate = Convert.ToDateTime(userdata[4]);
+            User.UserInstance.Address = userdata[5];
+            User.UserInstance.Regdate = Convert.ToDateTime(userdata[6]);
+            User.UserInstance.Phonenumber = userdata[7];
+            User.UserInstance.Email = userdata[8];
+        }
+
+        public void CreateUser(string username, string password, DateTime birthdate, string address, DateTime regdate, string phonenumber, string email)
+        {
+            var password_encrypted = encryption.EncryptString(password);
+            string command = "INSERT INTO users (username, password, birthdate, address, regdate, phonenumber, email) VALUES ('" + username + "','" + password_encrypted + "','" + birthdate + "','" + address + "','" + regdate + "','" + phonenumber + "','" + email + "')";
+            if (this.OpenConnection())
+            {
+                Query(command);
+            }
+        }
+
+        
     }
 }

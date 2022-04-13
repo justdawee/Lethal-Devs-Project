@@ -18,10 +18,20 @@ namespace Lethal_Devs_Project
         }
         private void backBtn_Click(object sender, EventArgs e)
         {
-            AuthorizationPanel panel = new AuthorizationPanel();
+            LoginForm panel = new LoginForm();
             this.Hide();
             panel.ShowDialog();
             this.Close();
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

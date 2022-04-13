@@ -14,7 +14,7 @@ namespace Lethal_Devs_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuthorizationPanel());
+            Application.Run(new LoginForm());
         }
     }
 }

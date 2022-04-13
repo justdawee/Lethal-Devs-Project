@@ -11,10 +11,9 @@ using System.Runtime.InteropServices;
 
 namespace Lethal_Devs_Project
 {
-    public partial class AdminUI : Form
+    public partial class MainForm : Form
     {
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-
         private static extern IntPtr CreateRoundRectRgn
         (
             int nLeftRect,
@@ -24,20 +23,29 @@ namespace Lethal_Devs_Project
             int nWidthEllipse,
             int nHeightEllipse
         );
-        public AdminUI()
+
+        static LoginForm panel = new LoginForm(); //Üzenet kiíráshoz példányosítani kell a form-ot.
+        static SqlConnection conn = new SqlConnection(); //sql csatlakozás objektum
+
+
+        public MainForm()
         {
             InitializeComponent();
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
+            this.pnlFormLoader.Controls.Clear();
+            FirstTab first_tab = new FirstTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            first_tab.FormBorderStyle = FormBorderStyle.None;
+            this.pnlFormLoader.Controls.Add(first_tab);
+            first_tab.Show();
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }//kilépés gomb
-
         private void AdminUI_Load(object sender, EventArgs e)
         {
-
+            lblUsername.Text = User.UserInstance.Username;
         }
 
         //UI DESIGN RÉSZLEG
@@ -55,6 +63,12 @@ namespace Lethal_Devs_Project
         private void btnFirst_Click(object sender, EventArgs e)
         {
             btnClickDesign(btnFirst);
+            lblTitle.Text = "Dashboard";
+            this.pnlFormLoader.Controls.Clear();
+            FirstTab first_tab = new FirstTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            first_tab.FormBorderStyle = FormBorderStyle.None;
+            this.pnlFormLoader.Controls.Add(first_tab);
+            first_tab.Show();
         }
         private void btnFirst_Leave(object sender, EventArgs e)
         {
@@ -64,6 +78,12 @@ namespace Lethal_Devs_Project
         {
             btnLeaveDesign(btnFirst); //default fül BUGFIX
             btnClickDesign(btnSecond);
+            lblTitle.Text = "Second";
+            this.pnlFormLoader.Controls.Clear();
+            MainFormTabs.SecondTab second_tab = new MainFormTabs.SecondTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            second_tab.FormBorderStyle = FormBorderStyle.None;
+            this.pnlFormLoader.Controls.Add(second_tab);
+            second_tab.Show();
         }
         private void btnSecond_Leave(object sender, EventArgs e)
         {
@@ -73,6 +93,12 @@ namespace Lethal_Devs_Project
         {
             btnLeaveDesign(btnFirst); //default fül BUGFIX
             btnClickDesign(btnThird);
+
+            this.pnlFormLoader.Controls.Clear();
+            MainFormTabs.ThirdTab third_tab = new MainFormTabs.ThirdTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            third_tab.FormBorderStyle = FormBorderStyle.None;
+            this.pnlFormLoader.Controls.Add(third_tab);
+            third_tab.Show();
         }
         private void btnThird_Leave(object sender, EventArgs e)
         {
@@ -82,6 +108,12 @@ namespace Lethal_Devs_Project
         {
             btnLeaveDesign(btnFirst); //default fül BUGFIX
             btnClickDesign(btnFourth);
+
+            this.pnlFormLoader.Controls.Clear();
+            MainFormTabs.FourthTab fourth_tab = new MainFormTabs.FourthTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            fourth_tab.FormBorderStyle = FormBorderStyle.None;
+            this.pnlFormLoader.Controls.Add(fourth_tab);
+            fourth_tab.Show();
         }
         private void btnFourth_Leave(object sender, EventArgs e)
         {
@@ -91,6 +123,12 @@ namespace Lethal_Devs_Project
         {
             btnLeaveDesign(btnFirst); //default fül BUGFIX
             btnClickDesign(btnBottom);
+
+            this.pnlFormLoader.Controls.Clear();
+            MainFormTabs.BottomTab bottom_tab = new MainFormTabs.BottomTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            bottom_tab.FormBorderStyle = FormBorderStyle.None;
+            this.pnlFormLoader.Controls.Add(bottom_tab);
+            bottom_tab.Show();
         }
         private void btnBottom_Leave(object sender, EventArgs e)
         {

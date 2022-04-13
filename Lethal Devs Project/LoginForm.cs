@@ -10,29 +10,54 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Media;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Lethal_Devs_Project
 {
-    public partial class AuthorizationPanel : Form
+    public partial class LoginForm : Form
     {
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse
+        );
+
         static SqlConnection conn = new SqlConnection(); //sql csatlakozás objektum
-        public AuthorizationPanel()
+        
+
+        public LoginForm()
         {
             InitializeComponent();
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
+
         private void AuthorizationPanel_Load(object sender, EventArgs e)
         {
-            usernameBox.Text = Properties.Settings.Default.username;
-            passwordBox.Text = Properties.Settings.Default.password;
-
+            //mentett adatok betöltése amikor betölt a panel
             if (Properties.Settings.Default.rememberme == true)
             {
                 rememberMeCheckBox.Checked = true;
+                usernameBox.Text = Properties.Settings.Default.username;
+                passwordBox.Text = Properties.Settings.Default.password;
             }
-        }
+            else
+            {
+                usernameBox.Text = "";
+                passwordBox.Text = "";
+                Properties.Settings.Default.username = "";
+                Properties.Settings.Default.password = "";
+                Properties.Settings.Default.Save();
+            }
+        } 
         private void exitBtn_Click(object sender, EventArgs e)
         {
-            this.Close(); // kilépés a programból
+            exitApp();
         }//kilépés a programból
         public void ShowMessage(string title, string message)
         {
@@ -55,15 +80,8 @@ namespace Lethal_Devs_Project
         }//elfelejtett jelszó event
         public void Login(string username, string password)
         {
-            var _username = username;
-            var _password = password;
-
-            if (conn.AttemptLogin(_username, _password))
+            if (conn.AttemptLogin(username, password))
             {
-                AdminUI admin = new AdminUI();
-                admin.Show();
-                this.Hide();
-                ShowMessage($"Sikeres bejelentkezés!\nÜdvözöllek, {username}", "INFO");
                 if (rememberMeCheckBox.Checked)
                 {
                     Properties.Settings.Default.username = usernameBox.Text;
@@ -71,12 +89,31 @@ namespace Lethal_Devs_Project
                     Properties.Settings.Default.rememberme = true;
                     Properties.Settings.Default.Save();
                 }
+                else
+                {
+                    Properties.Settings.Default.rememberme = false;
+                    Properties.Settings.Default.Save();
+                }
+
+                ShowMessage($"Sikeres bejelentkezés!\nÜdvözöllek, {username}", "INFO"); //Üdvözlő üzenet megjelenítése.
+                conn.loadAllUserData(username);
+
+                MainForm main_form = new MainForm();
+                this.ShowInTaskbar = false;
+                this.Hide();
+                main_form.ShowDialog();
             }
+            
         }//felhasználó beléptetés
         private void loginBtn_Click(object sender, EventArgs e)
         {
             Login(usernameBox.Text, passwordBox.Text);
         }//belépés gomb event
+        public void exitApp()
+        { 
+            Application.Exit();
+        }//program bezárás
+
 
     }
 

@@ -93,9 +93,29 @@ namespace Lethal_Devs_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chart_diagram {
+            get {
+                object obj = ResourceManager.GetObject("chart-diagram", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Conact {
             get {
                 object obj = ResourceManager.GetObject("Conact", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap downloads {
+            get {
+                object obj = ResourceManager.GetObject("downloads", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +146,16 @@ namespace Lethal_Devs_Project.Properties {
         internal static System.Drawing.Bitmap Lrg_settings {
             get {
                 object obj = ResourceManager.GetObject("Lrg-settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money_bag {
+            get {
+                object obj = ResourceManager.GetObject("money-bag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
