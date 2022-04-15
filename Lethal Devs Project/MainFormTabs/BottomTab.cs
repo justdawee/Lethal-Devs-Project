@@ -16,5 +16,10 @@ namespace Lethal_Devs_Project.MainFormTabs
         {
             InitializeComponent();
         }
+
+        private void BottomTab_Load(object sender, EventArgs e)
+        {
+            FormsClass.bottomform = this;
+        }
     }
 }

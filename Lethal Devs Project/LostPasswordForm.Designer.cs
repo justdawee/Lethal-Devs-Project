@@ -88,7 +88,7 @@
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(328, 40);
             this.loginBtn.TabIndex = 47;
-            this.loginBtn.Text = "Recover Password";
+            this.loginBtn.Text = "Jelszó visszaállítása";
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
@@ -124,7 +124,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(437, 31);
             this.label1.TabIndex = 44;
-            this.label1.Text = "Forgot Password";
+            this.label1.Text = "Elfelejtett jelszó";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exitBtn

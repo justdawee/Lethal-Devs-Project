@@ -24,116 +24,138 @@ namespace Lethal_Devs_Project
             int nHeightEllipse
         );
 
-        static LoginForm panel = new LoginForm(); //Üzenet kiíráshoz példányosítani kell a form-ot.
         static SqlConnection conn = new SqlConnection(); //sql csatlakozás objektum
 
+        bool searchClicked = false;
 
         public MainForm()
         {
             InitializeComponent();
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
-            this.pnlFormLoader.Controls.Clear();
-            FirstTab first_tab = new FirstTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            first_tab.FormBorderStyle = FormBorderStyle.None;
-            this.pnlFormLoader.Controls.Add(first_tab);
-            first_tab.Show();
-        }
 
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
+        }
+        public void ShowMessage(string title, string message)
+        {
+            MessageBox.Show(title, message);
+        }//üzenetek kiíratása.
         private void exitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }//kilépés gomb
         private void AdminUI_Load(object sender, EventArgs e)
         {
-            lblUsername.Text = User.UserInstance.Username;
+            lblUsername.Text = Users.UserInstance.Username;
+
+            pnlFormLoader.Controls.Clear();
+            var first_tab = FormsClass.firstform;
+            first_tab.FormBorderStyle = FormBorderStyle.None;
+            pnlFormLoader.Controls.Add(first_tab);
+            first_tab.Show();
         }
 
         //UI DESIGN RÉSZLEG
-        private void btnClickDesign(Button btn)
+        private void btnClickDesign(Button btn, PictureBox pic)
         {
             pnlNav.Height = btn.Height;
             pnlNav.Top = btn.Top;
             pnlNav.Left = btn.Left;
             btn.BackColor = Color.FromArgb(46, 51, 73);
+            pic.BackColor = Color.FromArgb(46, 51, 73);
         }
-        private void btnLeaveDesign(Button btn)
+        private void btnLeaveDesign(Button btn, PictureBox pic)
         {
             btn.BackColor = Color.FromArgb(24, 30, 54);
+            pic.BackColor = Color.FromArgb(24, 30, 54);
         }
         private void btnFirst_Click(object sender, EventArgs e)
         {
-            btnClickDesign(btnFirst);
-            lblTitle.Text = "Dashboard";
-            this.pnlFormLoader.Controls.Clear();
-            FirstTab first_tab = new FirstTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            btnClickDesign(btnFirst, picFirst);
+            lblTitle.Text = "Főoldal";
+
+            pnlFormLoader.Controls.Clear();
+            var first_tab = FormsClass.firstform;
             first_tab.FormBorderStyle = FormBorderStyle.None;
-            this.pnlFormLoader.Controls.Add(first_tab);
+            pnlFormLoader.Controls.Add(first_tab);
             first_tab.Show();
         }
         private void btnFirst_Leave(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnFirst);
+            btnLeaveDesign(btnFirst, picFirst);
         }
         private void btnSecond_Click(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnFirst); //default fül BUGFIX
-            btnClickDesign(btnSecond);
-            lblTitle.Text = "Second";
-            this.pnlFormLoader.Controls.Clear();
-            MainFormTabs.SecondTab second_tab = new MainFormTabs.SecondTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            btnLeaveDesign(btnFirst, picFirst);
+            btnClickDesign(btnSecond, picSecond);
+            lblTitle.Text = "Járművek";
+
+            var second_tab = FormsClass.secondform;
+            pnlFormLoader.Controls.Clear();
             second_tab.FormBorderStyle = FormBorderStyle.None;
-            this.pnlFormLoader.Controls.Add(second_tab);
+            pnlFormLoader.Controls.Add(second_tab);
             second_tab.Show();
         }
         private void btnSecond_Leave(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnSecond);
+            btnLeaveDesign(btnSecond, picSecond);
         }
         private void btnThird_Click(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnFirst); //default fül BUGFIX
-            btnClickDesign(btnThird);
+            btnLeaveDesign(btnFirst, picFirst);
+            btnClickDesign(btnThird, picThird);
+            lblTitle.Text = "Felhasználók";
 
-            this.pnlFormLoader.Controls.Clear();
-            MainFormTabs.ThirdTab third_tab = new MainFormTabs.ThirdTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            pnlFormLoader.Controls.Clear();
+            var third_tab = FormsClass.thirdform;
             third_tab.FormBorderStyle = FormBorderStyle.None;
-            this.pnlFormLoader.Controls.Add(third_tab);
+            pnlFormLoader.Controls.Add(third_tab);
             third_tab.Show();
         }
         private void btnThird_Leave(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnThird);
+            btnLeaveDesign(btnThird, picThird);
         }
         private void btnFourth_Click(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnFirst); //default fül BUGFIX
-            btnClickDesign(btnFourth);
+            btnLeaveDesign(btnFirst, picFirst);
+            btnClickDesign(btnFourth, picFourth);
+            lblTitle.Text = "Szerver";
 
-            this.pnlFormLoader.Controls.Clear();
-            MainFormTabs.FourthTab fourth_tab = new MainFormTabs.FourthTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            pnlFormLoader.Controls.Clear();
+            var fourth_tab = FormsClass.fourthform;
             fourth_tab.FormBorderStyle = FormBorderStyle.None;
-            this.pnlFormLoader.Controls.Add(fourth_tab);
+            pnlFormLoader.Controls.Add(fourth_tab);
             fourth_tab.Show();
         }
         private void btnFourth_Leave(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnFourth);
+            btnLeaveDesign(btnFourth, picFourth);
         }
         private void btnBottom_Click(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnFirst); //default fül BUGFIX
-            btnClickDesign(btnBottom);
+            btnLeaveDesign(btnFirst, picFirst);
+            btnClickDesign(btnBottom, picBottom);
+            lblTitle.Text = "Beállítások";
 
-            this.pnlFormLoader.Controls.Clear();
-            MainFormTabs.BottomTab bottom_tab = new MainFormTabs.BottomTab() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            pnlFormLoader.Controls.Clear();
+            var bottom_tab = FormsClass.bottomform;
             bottom_tab.FormBorderStyle = FormBorderStyle.None;
-            this.pnlFormLoader.Controls.Add(bottom_tab);
+            pnlFormLoader.Controls.Add(bottom_tab);
             bottom_tab.Show();
         }
         private void btnBottom_Leave(object sender, EventArgs e)
         {
-            btnLeaveDesign(btnBottom);
+            btnLeaveDesign(btnBottom, picBottom);
         }
+
+        private void searchBar_Click(object sender, EventArgs e)
+        {
+            if (searchClicked == false)
+            {
+                searchBar.Text = "";
+                searchClicked = true;
+            }
+        }
+
         //UI DESIGN VÉGE
     }
 }

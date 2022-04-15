@@ -29,7 +29,6 @@ namespace Lethal_Devs_Project
         );
 
         static SqlConnection conn = new SqlConnection(); //sql csatlakozás objektum
-        
 
         public LoginForm()
         {
@@ -96,7 +95,10 @@ namespace Lethal_Devs_Project
                 }
 
                 ShowMessage($"Sikeres bejelentkezés!\nÜdvözöllek, {username}", "INFO"); //Üdvözlő üzenet megjelenítése.
-                conn.loadAllUserData(username);
+                conn.loadUserData(username);
+
+                var currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                conn.Query("UPDATE users SET lastvisit = '" + currentTime + "' WHERE username = '" + username + "';");
 
                 MainForm main_form = new MainForm();
                 this.ShowInTaskbar = false;

@@ -43,23 +43,23 @@
             this.tabLabel.ForeColor = System.Drawing.Color.White;
             this.tabLabel.Location = new System.Drawing.Point(12, 9);
             this.tabLabel.Name = "tabLabel";
-            this.tabLabel.Size = new System.Drawing.Size(155, 25);
+            this.tabLabel.Size = new System.Drawing.Size(214, 25);
             this.tabLabel.TabIndex = 1;
-            this.tabLabel.Text = "Manage Vehicles";
+            this.tabLabel.Text = "Járművek menedzselése";
             // 
             // listVehicles
             // 
             this.listVehicles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.listVehicles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listVehicles.Font = new System.Drawing.Font("Myriad Arabic", 12F);
+            this.listVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listVehicles.ForeColor = System.Drawing.Color.White;
             this.listVehicles.FormattingEnabled = true;
-            this.listVehicles.ItemHeight = 22;
+            this.listVehicles.ItemHeight = 16;
             this.listVehicles.Items.AddRange(new object[] {
-            "No items in the database..."});
+            "Az adatbázis üres..."});
             this.listVehicles.Location = new System.Drawing.Point(201, 56);
             this.listVehicles.Name = "listVehicles";
-            this.listVehicles.Size = new System.Drawing.Size(520, 396);
+            this.listVehicles.Size = new System.Drawing.Size(520, 384);
             this.listVehicles.TabIndex = 2;
             // 
             // addVehBtn
@@ -73,8 +73,9 @@
             this.addVehBtn.Name = "addVehBtn";
             this.addVehBtn.Size = new System.Drawing.Size(155, 40);
             this.addVehBtn.TabIndex = 56;
-            this.addVehBtn.Text = "Add Vehicle";
+            this.addVehBtn.Text = "Jármű hozzáadás";
             this.addVehBtn.UseVisualStyleBackColor = false;
+            this.addVehBtn.Click += new System.EventHandler(this.addVehBtn_Click);
             // 
             // editVehBtn
             // 
@@ -87,8 +88,9 @@
             this.editVehBtn.Name = "editVehBtn";
             this.editVehBtn.Size = new System.Drawing.Size(155, 40);
             this.editVehBtn.TabIndex = 56;
-            this.editVehBtn.Text = "Edit Selected";
+            this.editVehBtn.Text = "Szerkesztés";
             this.editVehBtn.UseVisualStyleBackColor = false;
+            this.editVehBtn.Click += new System.EventHandler(this.editVehBtn_Click);
             // 
             // delVehBtn
             // 
@@ -101,8 +103,9 @@
             this.delVehBtn.Name = "delVehBtn";
             this.delVehBtn.Size = new System.Drawing.Size(155, 40);
             this.delVehBtn.TabIndex = 56;
-            this.delVehBtn.Text = "Delete Vehicle";
+            this.delVehBtn.Text = "Jármű törlése";
             this.delVehBtn.UseVisualStyleBackColor = false;
+            this.delVehBtn.Click += new System.EventHandler(this.delVehBtn_Click);
             // 
             // refreshBtn
             // 
@@ -115,8 +118,9 @@
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(155, 40);
             this.refreshBtn.TabIndex = 56;
-            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.Text = "Frissít";
             this.refreshBtn.UseVisualStyleBackColor = false;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // SecondTab
             // 
@@ -133,6 +137,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SecondTab";
             this.Text = "SecondTab";
+            this.Load += new System.EventHandler(this.SecondTab_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

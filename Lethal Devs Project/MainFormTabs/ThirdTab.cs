@@ -16,5 +16,10 @@ namespace Lethal_Devs_Project.MainFormTabs
         {
             InitializeComponent();
         }
+
+        private void ThirdTab_Load(object sender, EventArgs e)
+        {
+            FormsClass.thirdform = this;
+        }
     }
 }

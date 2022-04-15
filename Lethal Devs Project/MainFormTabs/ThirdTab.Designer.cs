@@ -47,7 +47,7 @@
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(155, 40);
             this.refreshBtn.TabIndex = 59;
-            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.Text = "Frissítés";
             this.refreshBtn.UseVisualStyleBackColor = false;
             // 
             // delUserBtn
@@ -61,7 +61,7 @@
             this.delUserBtn.Name = "delUserBtn";
             this.delUserBtn.Size = new System.Drawing.Size(155, 40);
             this.delUserBtn.TabIndex = 60;
-            this.delUserBtn.Text = "Delete User";
+            this.delUserBtn.Text = "Felh. Törlése";
             this.delUserBtn.UseVisualStyleBackColor = false;
             // 
             // editUserBtn
@@ -75,7 +75,7 @@
             this.editUserBtn.Name = "editUserBtn";
             this.editUserBtn.Size = new System.Drawing.Size(155, 40);
             this.editUserBtn.TabIndex = 61;
-            this.editUserBtn.Text = "Edit Selected";
+            this.editUserBtn.Text = "Szerkesztés";
             this.editUserBtn.UseVisualStyleBackColor = false;
             // 
             // addUserBtn
@@ -89,7 +89,7 @@
             this.addUserBtn.Name = "addUserBtn";
             this.addUserBtn.Size = new System.Drawing.Size(155, 40);
             this.addUserBtn.TabIndex = 62;
-            this.addUserBtn.Text = "Add User";
+            this.addUserBtn.Text = "Felvétel";
             this.addUserBtn.UseVisualStyleBackColor = false;
             // 
             // listUsers
@@ -101,7 +101,7 @@
             this.listUsers.FormattingEnabled = true;
             this.listUsers.ItemHeight = 22;
             this.listUsers.Items.AddRange(new object[] {
-            "No items in the database..."});
+            "Az adatbázis üres..."});
             this.listUsers.Location = new System.Drawing.Point(201, 56);
             this.listUsers.Name = "listUsers";
             this.listUsers.Size = new System.Drawing.Size(520, 396);
@@ -114,9 +114,9 @@
             this.tabLabel.ForeColor = System.Drawing.Color.White;
             this.tabLabel.Location = new System.Drawing.Point(12, 9);
             this.tabLabel.Name = "tabLabel";
-            this.tabLabel.Size = new System.Drawing.Size(132, 25);
+            this.tabLabel.Size = new System.Drawing.Size(244, 25);
             this.tabLabel.TabIndex = 57;
-            this.tabLabel.Text = "Manage Users";
+            this.tabLabel.Text = "Felhasználók Menedzselése";
             // 
             // ThirdTab
             // 
@@ -133,6 +133,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ThirdTab";
             this.Text = "ThirdTab";
+            this.Load += new System.EventHandler(this.ThirdTab_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

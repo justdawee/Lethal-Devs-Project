@@ -130,7 +130,7 @@
             this.forgotBtn.Name = "forgotBtn";
             this.forgotBtn.Size = new System.Drawing.Size(130, 27);
             this.forgotBtn.TabIndex = 54;
-            this.forgotBtn.Text = "Forgot password?";
+            this.forgotBtn.Text = "Elfelejtett jelszó?";
             this.forgotBtn.UseVisualStyleBackColor = false;
             this.forgotBtn.Click += new System.EventHandler(this.forgotBtn_Click);
             // 
@@ -145,7 +145,7 @@
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(328, 40);
             this.loginBtn.TabIndex = 55;
-            this.loginBtn.Text = "Login";
+            this.loginBtn.Text = "Belépés";
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
@@ -180,9 +180,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.label3.Location = new System.Drawing.Point(47, 350);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 17);
+            this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 48;
-            this.label3.Text = "Password";
+            this.label3.Text = "Jelszó";
             // 
             // rememberMeCheckBox
             // 
@@ -192,9 +192,9 @@
             this.rememberMeCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.rememberMeCheckBox.Location = new System.Drawing.Point(51, 404);
             this.rememberMeCheckBox.Name = "rememberMeCheckBox";
-            this.rememberMeCheckBox.Size = new System.Drawing.Size(113, 21);
+            this.rememberMeCheckBox.Size = new System.Drawing.Size(107, 21);
             this.rememberMeCheckBox.TabIndex = 51;
-            this.rememberMeCheckBox.Text = "Remember me";
+            this.rememberMeCheckBox.Text = "Emlékezz rám";
             this.rememberMeCheckBox.UseVisualStyleBackColor = false;
             // 
             // label2
@@ -205,9 +205,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.label2.Location = new System.Drawing.Point(47, 295);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 17);
+            this.label2.Size = new System.Drawing.Size(95, 17);
             this.label2.TabIndex = 49;
-            this.label2.Text = "Username";
+            this.label2.Text = "Felhasználónév";
             // 
             // label1
             // 
@@ -218,7 +218,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(437, 31);
             this.label1.TabIndex = 50;
-            this.label1.Text = "Administrator Login";
+            this.label1.Text = "Adminisztrátor Belépés";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LoginForm
