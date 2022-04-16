@@ -75,6 +75,8 @@ namespace Lethal_Devs_Project
                     "Egyéb",
         };
 
+        private int selectedVehIndex;
+
         private static readonly Vehicles _vehicles = new Vehicles();
 
         public static Vehicles VehiclesInstance
@@ -95,5 +97,6 @@ namespace Lethal_Devs_Project
         public string Fueltype { get => fueltype; set => fueltype = value; }
         public DateTime Added { get => added; set => added = value; }
         public int Active { get => active; set => active = value; }
+        public int SelectedVehIndex { get => selectedVehIndex; set => selectedVehIndex = value; }
     }
 }

@@ -52,6 +52,7 @@
             this.comboOwner = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.hiddenId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,6 +88,7 @@
             this.textboxVin.Name = "textboxVin";
             this.textboxVin.Size = new System.Drawing.Size(240, 32);
             this.textboxVin.TabIndex = 34;
+            this.textboxVin.Click += new System.EventHandler(this.textboxVin_Click);
             // 
             // textboxLicense
             // 
@@ -100,6 +102,7 @@
             this.textboxLicense.Name = "textboxLicense";
             this.textboxLicense.Size = new System.Drawing.Size(240, 32);
             this.textboxLicense.TabIndex = 33;
+            this.textboxLicense.Click += new System.EventHandler(this.textboxLicense_Click);
             // 
             // textboxMileage
             // 
@@ -113,6 +116,7 @@
             this.textboxMileage.Name = "textboxMileage";
             this.textboxMileage.Size = new System.Drawing.Size(240, 32);
             this.textboxMileage.TabIndex = 31;
+            this.textboxMileage.Click += new System.EventHandler(this.textboxMileage_Click);
             // 
             // textboxCcm
             // 
@@ -126,6 +130,7 @@
             this.textboxCcm.Name = "textboxCcm";
             this.textboxCcm.Size = new System.Drawing.Size(240, 32);
             this.textboxCcm.TabIndex = 27;
+            this.textboxCcm.Click += new System.EventHandler(this.textboxCcm_Click);
             // 
             // txtboxProdyear
             // 
@@ -139,6 +144,7 @@
             this.txtboxProdyear.Name = "txtboxProdyear";
             this.txtboxProdyear.Size = new System.Drawing.Size(240, 32);
             this.txtboxProdyear.TabIndex = 25;
+            this.txtboxProdyear.Click += new System.EventHandler(this.txtboxProdyear_Click);
             // 
             // txtboxType
             // 
@@ -152,6 +158,7 @@
             this.txtboxType.Name = "txtboxType";
             this.txtboxType.Size = new System.Drawing.Size(240, 32);
             this.txtboxType.TabIndex = 22;
+            this.txtboxType.Click += new System.EventHandler(this.txtboxType_Click);
             // 
             // lblVin
             // 
@@ -288,6 +295,7 @@
             this.comboColor.Name = "comboColor";
             this.comboColor.Size = new System.Drawing.Size(240, 32);
             this.comboColor.TabIndex = 32;
+            this.comboColor.Click += new System.EventHandler(this.comboColor_Click);
             // 
             // comboFuel
             // 
@@ -304,6 +312,7 @@
             this.comboFuel.Name = "comboFuel";
             this.comboFuel.Size = new System.Drawing.Size(240, 32);
             this.comboFuel.TabIndex = 29;
+            this.comboFuel.Click += new System.EventHandler(this.comboFuel_Click);
             // 
             // comboEngine
             // 
@@ -320,6 +329,7 @@
             this.comboEngine.Name = "comboEngine";
             this.comboEngine.Size = new System.Drawing.Size(240, 32);
             this.comboEngine.TabIndex = 26;
+            this.comboEngine.Click += new System.EventHandler(this.comboEngine_Click);
             // 
             // comboOwner
             // 
@@ -338,6 +348,7 @@
             this.comboOwner.Name = "comboOwner";
             this.comboOwner.Size = new System.Drawing.Size(240, 32);
             this.comboOwner.TabIndex = 13;
+            this.comboOwner.Click += new System.EventHandler(this.comboOwner_Click);
             // 
             // btnBack
             // 
@@ -369,6 +380,16 @@
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // hiddenId
+            // 
+            this.hiddenId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.hiddenId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.hiddenId.Location = new System.Drawing.Point(388, 0);
+            this.hiddenId.Name = "hiddenId";
+            this.hiddenId.Size = new System.Drawing.Size(44, 20);
+            this.hiddenId.TabIndex = 999;
+            this.hiddenId.Visible = false;
+            // 
             // editVehForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,6 +397,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(389, 593);
             this.ControlBox = false;
+            this.Controls.Add(this.hiddenId);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textboxVin);
@@ -405,6 +427,7 @@
             this.Name = "editVehForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jármű szerkesztése";
+            this.Load += new System.EventHandler(this.editVehForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -437,5 +460,6 @@
         private System.Windows.Forms.ComboBox comboOwner;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.TextBox hiddenId;
     }
 }

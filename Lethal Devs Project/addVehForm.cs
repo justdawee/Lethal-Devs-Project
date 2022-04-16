@@ -117,7 +117,6 @@ namespace Lethal_Devs_Project
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
             var ownerUnformat = comboOwner.Text;
             var ownerFormat = ownerUnformat.Split('(')[0];
             conn.AddVehicle(
@@ -147,7 +146,7 @@ namespace Lethal_Devs_Project
 
             typeclick = false; prodyearclick = false; ccmclick = false; mileageclick = false; licenseclick = false; vinclick = false;
 
-            FormsClass.secondform.refreshList();
+            FormsClass.secondform.refreshVehiclesList();
 
             this.Close();
         }

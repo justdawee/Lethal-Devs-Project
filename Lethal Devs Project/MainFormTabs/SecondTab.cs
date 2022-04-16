@@ -14,10 +14,13 @@ namespace Lethal_Devs_Project.MainFormTabs
     public partial class SecondTab : Form
     {
         SqlConnection conn = new SqlConnection();
+        MainForm panel = new MainForm();
         addVehForm vehForm = new addVehForm();
         editVehForm editForm = new editVehForm();
 
-        Vehicles veh = new Vehicles();
+        private int selectedIndex;
+
+        public int SelectedIndex { get => selectedIndex; set => selectedIndex = value; }
 
         public SecondTab()
         {
@@ -30,7 +33,16 @@ namespace Lethal_Devs_Project.MainFormTabs
         }
         private void editVehBtn_Click(object sender, EventArgs e)
         {
-            editForm.ShowDialog();
+            var selected = listVehicles.SelectedIndex;
+            if (selected == -1)
+            {
+                panel.ShowMessage("Előbb válassz ki egy elemet a listán!", "HIBA");
+            }
+            else
+            {
+                SelectedIndex = listVehicles.SelectedIndex;
+                editForm.ShowDialog();
+            }
         }
         private void delVehBtn_Click(object sender, EventArgs e)
         {
@@ -40,10 +52,10 @@ namespace Lethal_Devs_Project.MainFormTabs
         private void SecondTab_Load(object sender, EventArgs e)
         {
             FormsClass.secondform = this;
-            refreshList();
+            refreshVehiclesList();
         }
 
-        public void refreshList()
+        public void refreshVehiclesList()
         {
             if (conn.checkEmptyTable("vehicles") == false)
             {
@@ -51,15 +63,18 @@ namespace Lethal_Devs_Project.MainFormTabs
                 var vehicles = conn.getVehicleTable();
                 foreach (var vehicle in vehicles)
                 {
+                    var listformat = $"{vehicle.Id} {vehicle.Prodyear} {vehicle.Type} {vehicle.Owner} {vehicle.Engine} {vehicle.Ccm} {vehicle.Fueltype} {vehicle.Color} {vehicle.Mileage} {vehicle.License} {vehicle.Vin} {vehicle.Added} {vehicle.Active}";
                     var format = $"(ID: {vehicle.Id}) {vehicle.Prodyear} {vehicle.Type} > Tulaj: {vehicle.Owner} [Motor: {vehicle.Engine}, cm3: {vehicle.Ccm}, Üzemanyag: {vehicle.Fueltype}, Szín: {vehicle.Color}, Futásadat: {vehicle.Mileage}, Rendszám: {vehicle.License}, Alvázszám: {vehicle.Vin}, Hozzáadva: {vehicle.Added}, Aktív: {vehicle.Active}";
                     listVehicles.Items.Add(format);
                 }
+                listVehicles.HorizontalScrollbar = true;
             }
         }
 
         private void refreshBtn_Click(object sender, EventArgs e)
         {
-            refreshList();
+            refreshVehiclesList();
         }
+
     }
 }

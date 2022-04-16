@@ -96,15 +96,15 @@
             // 
             this.listUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.listUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listUsers.Font = new System.Drawing.Font("Myriad Arabic", 12F);
+            this.listUsers.Font = new System.Drawing.Font("Roboto Cn", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listUsers.ForeColor = System.Drawing.Color.White;
             this.listUsers.FormattingEnabled = true;
-            this.listUsers.ItemHeight = 22;
+            this.listUsers.ItemHeight = 15;
             this.listUsers.Items.AddRange(new object[] {
             "Az adatbázis üres..."});
             this.listUsers.Location = new System.Drawing.Point(201, 56);
             this.listUsers.Name = "listUsers";
-            this.listUsers.Size = new System.Drawing.Size(520, 396);
+            this.listUsers.Size = new System.Drawing.Size(520, 390);
             this.listUsers.TabIndex = 58;
             // 
             // tabLabel

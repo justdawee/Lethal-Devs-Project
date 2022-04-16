@@ -51,15 +51,15 @@
             // 
             this.listVehicles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.listVehicles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.listVehicles.Font = new System.Drawing.Font("Roboto Cn", 9.75F);
             this.listVehicles.ForeColor = System.Drawing.Color.White;
             this.listVehicles.FormattingEnabled = true;
-            this.listVehicles.ItemHeight = 16;
+            this.listVehicles.ItemHeight = 15;
             this.listVehicles.Items.AddRange(new object[] {
             "Az adatbázis üres..."});
             this.listVehicles.Location = new System.Drawing.Point(201, 56);
             this.listVehicles.Name = "listVehicles";
-            this.listVehicles.Size = new System.Drawing.Size(520, 384);
+            this.listVehicles.Size = new System.Drawing.Size(520, 390);
             this.listVehicles.TabIndex = 2;
             // 
             // addVehBtn
