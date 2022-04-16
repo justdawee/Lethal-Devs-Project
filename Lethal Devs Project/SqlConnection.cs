@@ -225,6 +225,7 @@ namespace Lethal_Devs_Project
             }
             return found;
         }
+
         public bool checkEmptyTable(string table)
         {
             var query = "SELECT COUNT(*) from " + table;
@@ -281,6 +282,7 @@ namespace Lethal_Devs_Project
             CloseConnection();
             return vehicles;
         }
+
         public List<Users> getUsersTable()
         {
             var query = "SELECT * FROM users";

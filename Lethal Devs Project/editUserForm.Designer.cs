@@ -49,6 +49,7 @@
             this.checkboxAdminNo = new System.Windows.Forms.CheckBox();
             this.checkboxAdminYes = new System.Windows.Forms.CheckBox();
             this.lblAdmin = new System.Windows.Forms.Label();
+            this.hiddenId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,11 +81,11 @@
             this.txtboxEmail.ForeColor = System.Drawing.Color.White;
             this.txtboxEmail.Location = new System.Drawing.Point(130, 292);
             this.txtboxEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtboxEmail.MaxLength = 6;
+            this.txtboxEmail.MaxLength = 255;
             this.txtboxEmail.Multiline = true;
             this.txtboxEmail.Name = "txtboxEmail";
             this.txtboxEmail.Size = new System.Drawing.Size(240, 32);
-            this.txtboxEmail.TabIndex = 46;
+            this.txtboxEmail.TabIndex = 5;
             // 
             // txtboxAddress
             // 
@@ -93,11 +94,11 @@
             this.txtboxAddress.ForeColor = System.Drawing.Color.White;
             this.txtboxAddress.Location = new System.Drawing.Point(130, 208);
             this.txtboxAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtboxAddress.MaxLength = 4;
+            this.txtboxAddress.MaxLength = 120;
             this.txtboxAddress.Multiline = true;
             this.txtboxAddress.Name = "txtboxAddress";
             this.txtboxAddress.Size = new System.Drawing.Size(240, 32);
-            this.txtboxAddress.TabIndex = 44;
+            this.txtboxAddress.TabIndex = 3;
             // 
             // txtboxName
             // 
@@ -110,7 +111,7 @@
             this.txtboxName.Multiline = true;
             this.txtboxName.Name = "txtboxName";
             this.txtboxName.Size = new System.Drawing.Size(240, 32);
-            this.txtboxName.TabIndex = 42;
+            this.txtboxName.TabIndex = 2;
             // 
             // lblEmail
             // 
@@ -195,7 +196,7 @@
             this.btnBack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(112, 37);
-            this.btnBack.TabIndex = 54;
+            this.btnBack.TabIndex = 11;
             this.btnBack.Text = "Vissza";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -211,7 +212,7 @@
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(112, 37);
-            this.btnEdit.TabIndex = 53;
+            this.btnEdit.TabIndex = 10;
             this.btnEdit.Text = "Szerkesztés";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -223,25 +224,25 @@
             this.txtboxUsername.ForeColor = System.Drawing.Color.White;
             this.txtboxUsername.Location = new System.Drawing.Point(130, 124);
             this.txtboxUsername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtboxUsername.MaxLength = 255;
+            this.txtboxUsername.MaxLength = 50;
             this.txtboxUsername.Multiline = true;
             this.txtboxUsername.Name = "txtboxUsername";
             this.txtboxUsername.Size = new System.Drawing.Size(240, 32);
-            this.txtboxUsername.TabIndex = 42;
+            this.txtboxUsername.TabIndex = 1;
             // 
             // bornDatePicker
             // 
             this.bornDatePicker.Location = new System.Drawing.Point(130, 255);
             this.bornDatePicker.Name = "bornDatePicker";
             this.bornDatePicker.Size = new System.Drawing.Size(240, 20);
-            this.bornDatePicker.TabIndex = 56;
+            this.bornDatePicker.TabIndex = 4;
             // 
             // regDatePicker
             // 
             this.regDatePicker.Location = new System.Drawing.Point(130, 381);
             this.regDatePicker.Name = "regDatePicker";
             this.regDatePicker.Size = new System.Drawing.Size(240, 20);
-            this.regDatePicker.TabIndex = 57;
+            this.regDatePicker.TabIndex = 7;
             // 
             // lblPhone
             // 
@@ -262,11 +263,11 @@
             this.txtboxPhone.ForeColor = System.Drawing.Color.White;
             this.txtboxPhone.Location = new System.Drawing.Point(130, 334);
             this.txtboxPhone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtboxPhone.MaxLength = 6;
+            this.txtboxPhone.MaxLength = 11;
             this.txtboxPhone.Multiline = true;
             this.txtboxPhone.Name = "txtboxPhone";
             this.txtboxPhone.Size = new System.Drawing.Size(240, 32);
-            this.txtboxPhone.TabIndex = 46;
+            this.txtboxPhone.TabIndex = 6;
             // 
             // checkboxAdminNo
             // 
@@ -278,9 +279,10 @@
             this.checkboxAdminNo.Location = new System.Drawing.Point(180, 418);
             this.checkboxAdminNo.Name = "checkboxAdminNo";
             this.checkboxAdminNo.Size = new System.Drawing.Size(52, 20);
-            this.checkboxAdminNo.TabIndex = 64;
+            this.checkboxAdminNo.TabIndex = 9;
             this.checkboxAdminNo.Text = "Nem";
             this.checkboxAdminNo.UseVisualStyleBackColor = true;
+            this.checkboxAdminNo.CheckedChanged += new System.EventHandler(this.checkboxAdminNo_CheckedChanged);
             // 
             // checkboxAdminYes
             // 
@@ -292,9 +294,10 @@
             this.checkboxAdminYes.Location = new System.Drawing.Point(130, 418);
             this.checkboxAdminYes.Name = "checkboxAdminYes";
             this.checkboxAdminYes.Size = new System.Drawing.Size(49, 20);
-            this.checkboxAdminYes.TabIndex = 65;
+            this.checkboxAdminYes.TabIndex = 8;
             this.checkboxAdminYes.Text = "Igen";
             this.checkboxAdminYes.UseVisualStyleBackColor = true;
+            this.checkboxAdminYes.CheckedChanged += new System.EventHandler(this.checkboxAdminYes_CheckedChanged);
             // 
             // lblAdmin
             // 
@@ -308,6 +311,15 @@
             this.lblAdmin.Text = "Admin?";
             this.lblAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // hiddenId
+            // 
+            this.hiddenId.Location = new System.Drawing.Point(381, -21);
+            this.hiddenId.Name = "hiddenId";
+            this.hiddenId.ReadOnly = true;
+            this.hiddenId.Size = new System.Drawing.Size(100, 20);
+            this.hiddenId.TabIndex = 67;
+            this.hiddenId.Visible = false;
+            // 
             // editUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,6 +327,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(389, 513);
             this.ControlBox = false;
+            this.Controls.Add(this.hiddenId);
             this.Controls.Add(this.checkboxAdminNo);
             this.Controls.Add(this.checkboxAdminYes);
             this.Controls.Add(this.lblAdmin);
@@ -370,5 +383,6 @@
         private System.Windows.Forms.CheckBox checkboxAdminNo;
         private System.Windows.Forms.CheckBox checkboxAdminYes;
         private System.Windows.Forms.Label lblAdmin;
+        private System.Windows.Forms.TextBox hiddenId;
     }
 }

@@ -14,7 +14,6 @@ namespace Lethal_Devs_Project
     public partial class FirstTab : Form
     {
         SqlConnection conn = new SqlConnection();
-        Vehicles veh = new Vehicles();
 
         public FirstTab()
         {

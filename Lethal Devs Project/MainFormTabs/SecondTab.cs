@@ -46,7 +46,16 @@ namespace Lethal_Devs_Project.MainFormTabs
         }
         private void delVehBtn_Click(object sender, EventArgs e)
         {
+            var selected = listVehicles.SelectedIndex;
 
+            if (selected == -1)
+            {
+                panel.ShowMessage("Előbb válassz ki egy elemet a listán!", "HIBA");
+            }
+            else
+            {
+                delSelectedVehicle();
+            }
         }
 
         private void SecondTab_Load(object sender, EventArgs e)
@@ -69,6 +78,32 @@ namespace Lethal_Devs_Project.MainFormTabs
                 }
                 listVehicles.HorizontalScrollbar = true;
             }
+        }
+        public void delSelectedVehicle()
+        {
+            var selected = listVehicles.SelectedIndex;
+            int vehid;
+            List<string> temp = new List<string>();
+
+            if (conn.checkEmptyTable("vehicles") == false)
+            {
+                var vehicles = conn.getVehicleTable();
+                foreach (var vehicle in vehicles)
+                {
+                    var listformat = $"{vehicle.Id}^{vehicle.Prodyear}^{vehicle.Type}^{vehicle.Owner}^{vehicle.Engine}^{vehicle.Ccm}^{vehicle.Fueltype}^{vehicle.Color}^{vehicle.Mileage}^{vehicle.License}^{vehicle.Vin}^{vehicle.Added}^{vehicle.Active}";
+                    temp.Add(listformat);
+                }
+            }
+
+            var selectedRow = temp[selected];
+            var data = selectedRow.Split('^');
+            vehid = Convert.ToInt32(data[0]);
+
+            var command = "DELETE FROM vehicles WHERE vehicles.vehid = '" + vehid + "'";
+
+            conn.Query(command);
+            refreshVehiclesList();
+            panel.ShowMessage("A járművet töröltük az adatbázisból!","SIKER");
         }
 
         private void refreshBtn_Click(object sender, EventArgs e)

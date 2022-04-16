@@ -117,7 +117,7 @@
             this.txtboxUsername.ForeColor = System.Drawing.Color.White;
             this.txtboxUsername.Location = new System.Drawing.Point(130, 124);
             this.txtboxUsername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtboxUsername.MaxLength = 255;
+            this.txtboxUsername.MaxLength = 50;
             this.txtboxUsername.Multiline = true;
             this.txtboxUsername.Name = "txtboxUsername";
             this.txtboxUsername.Size = new System.Drawing.Size(240, 32);
