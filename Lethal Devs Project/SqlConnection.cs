@@ -190,10 +190,10 @@ namespace Lethal_Devs_Project
             Users.UserInstance.Email = userdata[10];
         }
 
-        public void CreateUser(string username, string password, string name, DateTime birthdate, string address, DateTime regdate, string phonenumber, string email)
+        public void CreateUser(string username, string password, string name, DateTime birthdate, string address, DateTime regdate, string phonenumber, string email, int admin)
         {
             var password_encrypted = encryption.EncryptString(password);
-            string command = "INSERT INTO users (username, password, name, birthdate, address, regdate, phonenumber, email) VALUES ('" + username + "','" + password_encrypted + "','" + name + "','" + birthdate + "','" + address + "','" + regdate + "','" + address + "','" + phonenumber + "','" + email + "')";
+            string command = "INSERT INTO users (username, password, name, birthdate, address, regdate, phonenumber, email, admin) VALUES ('" + username + "','" + password_encrypted + "','" + name + "','" + birthdate.ToString("yyyy-MM-dd") + "','" + address + "','" + regdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + phonenumber + "','" + email + "','" + admin + "')";
             Query(command);
         }
 

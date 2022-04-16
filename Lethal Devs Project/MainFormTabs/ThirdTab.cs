@@ -13,9 +13,16 @@ namespace Lethal_Devs_Project.MainFormTabs
     public partial class ThirdTab : Form
     {
         SqlConnection conn = new SqlConnection();
+        MainForm panel = new MainForm();
+        addUserForm userForm = new addUserForm();
+        editUserForm editForm = new editUserForm();
 
         Users user = new Users();
         List<string> editlist = new List<string>();
+
+        private int selectedIndex;
+
+        public int SelectedIndex { get => selectedIndex; set => selectedIndex = value; }
 
         public ThirdTab()
         {
@@ -45,6 +52,35 @@ namespace Lethal_Devs_Project.MainFormTabs
                 }
                 listUsers.HorizontalScrollbar = true;
             }
+        }
+
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            refreshUsersList();
+        }
+
+        private void addUserBtn_Click(object sender, EventArgs e)
+        {
+            userForm.ShowDialog();
+        }
+
+        private void editUserBtn_Click(object sender, EventArgs e)
+        {
+            var selected = listUsers.SelectedIndex;
+            if (selected == -1)
+            {
+                panel.ShowMessage("Előbb válassz ki egy elemet a listán!", "HIBA");
+            }
+            else
+            {
+                SelectedIndex = listUsers.SelectedIndex;
+                editForm.ShowDialog();
+            }
+        }
+
+        private void delUserBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

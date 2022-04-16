@@ -49,6 +49,7 @@
             this.refreshBtn.TabIndex = 59;
             this.refreshBtn.Text = "Frissítés";
             this.refreshBtn.UseVisualStyleBackColor = false;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // delUserBtn
             // 
@@ -63,6 +64,7 @@
             this.delUserBtn.TabIndex = 60;
             this.delUserBtn.Text = "Felh. Törlése";
             this.delUserBtn.UseVisualStyleBackColor = false;
+            this.delUserBtn.Click += new System.EventHandler(this.delUserBtn_Click);
             // 
             // editUserBtn
             // 
@@ -77,6 +79,7 @@
             this.editUserBtn.TabIndex = 61;
             this.editUserBtn.Text = "Szerkesztés";
             this.editUserBtn.UseVisualStyleBackColor = false;
+            this.editUserBtn.Click += new System.EventHandler(this.editUserBtn_Click);
             // 
             // addUserBtn
             // 
@@ -91,6 +94,7 @@
             this.addUserBtn.TabIndex = 62;
             this.addUserBtn.Text = "Felvétel";
             this.addUserBtn.UseVisualStyleBackColor = false;
+            this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
             // 
             // listUsers
             // 
