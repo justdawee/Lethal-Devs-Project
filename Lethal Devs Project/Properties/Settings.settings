@@ -11,5 +11,20 @@
     <Setting Name="rememberme" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="db_ip" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="db_port" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+    <Setting Name="db_uid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">lethaldevs</Value>
+    </Setting>
+    <Setting Name="db_password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">YR*_D61xFdDPa[0X</Value>
+    </Setting>
+    <Setting Name="db_database" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">vms_lethaldevs</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

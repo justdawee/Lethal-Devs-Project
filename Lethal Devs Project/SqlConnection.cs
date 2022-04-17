@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace Lethal_Devs_Project
@@ -21,26 +22,36 @@ namespace Lethal_Devs_Project
         private string password;
         private string port;
 
+        private static int sqloperations;
+
+        public string Server { get => server; set => server = value; }
+        public string Database { get => database; set => database = value; }
+        public string Uid { get => uid; set => uid = value; }
+        public string Password { get => password; set => password = value; }
+        public string Port { get => port; set => port = value; }
+        public static int Sqloperations { get => sqloperations; set => sqloperations = value; }
+        public MySqlConnection Connection { get => connection; set => connection = value; }
+
         public SqlConnection()
         {
-            server = "localhost";
-            database = "vms_lethaldevs";
-            uid = "lethaldevs";
-            password = "YR*_D61xFdDPa[0X";
-            port = "3306";
+            Server = Properties.Settings.Default.db_ip;
+            Database = Properties.Settings.Default.db_database;
+            Uid = Properties.Settings.Default.db_uid;
+            Password = Properties.Settings.Default.db_password;
+            Port = Properties.Settings.Default.db_port;
 
             string connectionString;
-            connectionString = "server=" + server + ";" + "user=" + uid + ";" + "database=" +
-            database + ";" + "port=" + port + ";" + "password=" + password + ";";
+            connectionString = "server=" + Server + ";" + "user=" + Uid + ";" + "database=" +
+            Database + ";" + "port=" + Port + ";" + "password=" + Password + ";";
 
-            connection = new MySqlConnection(connectionString);
+            Connection = new MySqlConnection(connectionString);
         }
 
-        private bool OpenConnection()
+        public bool OpenConnection()
         {
             try
             {
-                connection.Open();
+                Connection.Open();
                 return true;
             }
             catch (MySqlException e)
@@ -67,11 +78,11 @@ namespace Lethal_Devs_Project
             }
         }
 
-        private bool CloseConnection()
+        public bool CloseConnection()
         {
             try
             {
-                connection.Close();
+                Connection.Close();
                 return true;
             }
             catch (MySqlException e)
@@ -86,7 +97,8 @@ namespace Lethal_Devs_Project
         {
             if (OpenConnection())
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                Sqloperations++;
+                MySqlCommand cmd = new MySqlCommand(query, Connection);
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
                 CloseConnection();
@@ -104,7 +116,8 @@ namespace Lethal_Devs_Project
 
             if (this.OpenConnection())
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                Sqloperations++;
+                MySqlCommand cmd = new MySqlCommand(query, Connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())
@@ -143,7 +156,8 @@ namespace Lethal_Devs_Project
 
             if (this.OpenConnection())
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                Sqloperations++;
+                MySqlCommand cmd = new MySqlCommand(query, Connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())
@@ -203,37 +217,14 @@ namespace Lethal_Devs_Project
             Query(command);
         }
 
-        public List<string> getVehDataById(int id, string[] mitkeres)
-        {
-            var found = new List<string>();
-            var query = "SELECT * FROM vehicles WHERE (vehid = '" + id + "')";
-
-            if (this.OpenConnection())
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-                    for (int i = 0; i < mitkeres.Length; i++)
-                    {
-                        found.Add(dataReader[$"{mitkeres[i]}"] + "");
-                    }
-                }
-                dataReader.Close();
-                CloseConnection();
-            }
-            return found;
-        }
-
         public bool checkEmptyTable(string table)
         {
             var query = "SELECT COUNT(*) from " + table;
-
+            Sqloperations += 1;
             try
             {
                 OpenConnection();
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlCommand cmd = new MySqlCommand(query, Connection);
                 var result = int.Parse(cmd.ExecuteScalar().ToString());
                 return result == 0;
             }
@@ -256,7 +247,8 @@ namespace Lethal_Devs_Project
 
             if (OpenConnection())
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                Sqloperations++;
+                MySqlCommand cmd = new MySqlCommand(query, Connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
@@ -290,7 +282,8 @@ namespace Lethal_Devs_Project
 
             if (OpenConnection())
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                Sqloperations++;
+                MySqlCommand cmd = new MySqlCommand(query, Connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
@@ -312,5 +305,41 @@ namespace Lethal_Devs_Project
             CloseConnection();
             return users;
         }
+
+        public string backupDirectory()
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                var result = dialog.ShowDialog();
+                return dialog.SelectedPath + "\\";
+            }
+        }
+
+        public void Backup()
+        {
+            string constring = $"server={Server};user={Uid};pwd={Password};database={Database};convertzerodatetime=true;";
+            string path = backupDirectory();
+            string sqlPath = path + "SQL-" + System.DateTime.Today.ToString("MM-dd-yyyy") + "." + "sql";
+
+            using (MySqlConnection conn = new MySqlConnection(constring))
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        cmd.Connection = conn;
+                        conn.Open();
+                        mb.ExportToFile(sqlPath);
+                        conn.Close();
+                        panel.ShowMessage($"A fájlt sikeresen elmentettük a következő helyre:\n {sqlPath}", "SIKER");
+                    }
+                }
+            }
+        }
+        public static int getMySqlOperations()
+        {
+            return Sqloperations;
+        }
+
     }
 }

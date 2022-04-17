@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panel5 = new System.Windows.Forms.Panel();
-            this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
+            this.progressBar = new CircularProgressBar.CircularProgressBar();
             this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblProgressBar = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.listBiggestEngines = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblMostCars = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -51,6 +51,7 @@
             this.lblAvgMileage = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblUserCount = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -64,45 +65,44 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            this.panel5.Controls.Add(this.circularProgressBar1);
+            this.panel5.Controls.Add(this.progressBar);
             this.panel5.Controls.Add(this.label9);
-            this.panel5.Controls.Add(this.label7);
+            this.panel5.Controls.Add(this.lblProgressBar);
             this.panel5.Location = new System.Drawing.Point(5, 166);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(258, 295);
             this.panel5.TabIndex = 47;
             // 
-            // circularProgressBar1
+            // progressBar
             // 
-            this.circularProgressBar1.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
-            this.circularProgressBar1.AnimationSpeed = 500;
-            this.circularProgressBar1.BackColor = System.Drawing.Color.Transparent;
-            this.circularProgressBar1.Font = new System.Drawing.Font("Myriad Arabic", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.circularProgressBar1.ForeColor = System.Drawing.Color.White;
-            this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            this.circularProgressBar1.InnerMargin = 2;
-            this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(52, 56);
-            this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
-            this.circularProgressBar1.Name = "circularProgressBar1";
-            this.circularProgressBar1.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.circularProgressBar1.OuterMargin = -25;
-            this.circularProgressBar1.OuterWidth = 26;
-            this.circularProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(249)))));
-            this.circularProgressBar1.ProgressWidth = 7;
-            this.circularProgressBar1.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 36F);
-            this.circularProgressBar1.Size = new System.Drawing.Size(150, 150);
-            this.circularProgressBar1.StartAngle = 270;
-            this.circularProgressBar1.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.circularProgressBar1.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
-            this.circularProgressBar1.SubscriptText = "";
-            this.circularProgressBar1.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.circularProgressBar1.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
-            this.circularProgressBar1.SuperscriptText = "";
-            this.circularProgressBar1.TabIndex = 1;
-            this.circularProgressBar1.Text = "67%";
-            this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(5, 8, 0, 0);
-            this.circularProgressBar1.Value = 68;
+            this.progressBar.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.ExponentialEaseIn;
+            this.progressBar.AnimationSpeed = 50;
+            this.progressBar.BackColor = System.Drawing.Color.Transparent;
+            this.progressBar.Font = new System.Drawing.Font("Myriad Arabic", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.progressBar.ForeColor = System.Drawing.Color.White;
+            this.progressBar.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.progressBar.InnerMargin = 2;
+            this.progressBar.InnerWidth = -1;
+            this.progressBar.Location = new System.Drawing.Point(52, 56);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.progressBar.OuterMargin = -25;
+            this.progressBar.OuterWidth = 26;
+            this.progressBar.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(249)))));
+            this.progressBar.ProgressWidth = 7;
+            this.progressBar.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 36F);
+            this.progressBar.Size = new System.Drawing.Size(150, 150);
+            this.progressBar.StartAngle = 270;
+            this.progressBar.Step = 5;
+            this.progressBar.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.progressBar.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.progressBar.SubscriptText = "";
+            this.progressBar.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.progressBar.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.progressBar.SuperscriptText = "";
+            this.progressBar.TabIndex = 1;
+            this.progressBar.Text = "0%";
+            this.progressBar.TextMargin = new System.Windows.Forms.Padding(5, 8, 0, 0);
             // 
             // label9
             // 
@@ -111,20 +111,20 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(8, 8);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 23);
+            this.label9.Size = new System.Drawing.Size(141, 23);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Valami";
+            this.label9.Text = "Cél felhasználó";
             // 
-            // label7
+            // lblProgressBar
             // 
-            this.label7.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(151)))), ((int)(((byte)(176)))));
-            this.label7.Location = new System.Drawing.Point(2, 224);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(256, 58);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Az elmúlt 28 nap adatai\r\nEgy szöveg hogy mindenkinek nagyon jó legyen";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblProgressBar.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProgressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(151)))), ((int)(((byte)(176)))));
+            this.lblProgressBar.Location = new System.Drawing.Point(2, 224);
+            this.lblProgressBar.Name = "lblProgressBar";
+            this.lblProgressBar.Size = new System.Drawing.Size(256, 62);
+            this.lblProgressBar.TabIndex = 0;
+            this.lblProgressBar.Text = "Az elmúlt 28 nap adatai";
+            this.lblProgressBar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // panel6
             // 
@@ -170,7 +170,7 @@
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
             this.panel8.Controls.Add(this.label13);
-            this.panel8.Controls.Add(this.label12);
+            this.panel8.Controls.Add(this.lblMostCars);
             this.panel8.Location = new System.Drawing.Point(284, 376);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(443, 85);
@@ -183,24 +183,24 @@
             this.label13.ForeColor = System.Drawing.Color.White;
             this.label13.Location = new System.Drawing.Point(8, 8);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(69, 23);
+            this.label13.Size = new System.Drawing.Size(135, 23);
             this.label13.TabIndex = 0;
-            this.label13.Text = "Valami";
+            this.label13.Text = "Legtöbb jármű";
             // 
-            // label12
+            // lblMostCars
             // 
-            this.label12.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(151)))), ((int)(((byte)(176)))));
-            this.label12.Location = new System.Drawing.Point(13, 33);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(418, 43);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Egy szöveg hogy mindenkinek nagyon jó legyen";
+            this.lblMostCars.Font = new System.Drawing.Font("Roboto Cn", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblMostCars.ForeColor = System.Drawing.Color.White;
+            this.lblMostCars.Location = new System.Drawing.Point(13, 33);
+            this.lblMostCars.Name = "lblMostCars";
+            this.lblMostCars.Size = new System.Drawing.Size(418, 43);
+            this.lblMostCars.TabIndex = 0;
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
             this.panel7.Controls.Add(this.label8);
+            this.panel7.Controls.Add(this.lblUserCount);
             this.panel7.Controls.Add(this.label10);
             this.panel7.Location = new System.Drawing.Point(562, 15);
             this.panel7.Name = "panel7";
@@ -214,19 +214,19 @@
             this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(8, 8);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 23);
+            this.label8.Size = new System.Drawing.Size(123, 23);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Valami";
+            this.label8.Text = "Felhasználók";
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(151)))), ((int)(((byte)(176)))));
-            this.label10.Location = new System.Drawing.Point(14, 46);
+            this.label10.Location = new System.Drawing.Point(9, 96);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(139, 69);
+            this.label10.Size = new System.Drawing.Size(139, 19);
             this.label10.TabIndex = 0;
-            this.label10.Text = "Egy szöveg hogy jobb legyen";
+            this.label10.Text = "Elmúlt 28 nap adatai";
             // 
             // panel4
             // 
@@ -336,6 +336,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Átl. Futásadat";
             // 
+            // lblUserCount
+            // 
+            this.lblUserCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblUserCount.ForeColor = System.Drawing.Color.Orange;
+            this.lblUserCount.Location = new System.Drawing.Point(20, 50);
+            this.lblUserCount.Name = "lblUserCount";
+            this.lblUserCount.Size = new System.Drawing.Size(128, 32);
+            this.lblUserCount.TabIndex = 1;
+            this.lblUserCount.Text = "0 db";
+            this.lblUserCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FirstTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,14 +384,14 @@
         #endregion
 
         private System.Windows.Forms.Panel panel5;
-        private CircularProgressBar.CircularProgressBar circularProgressBar1;
+        private CircularProgressBar.CircularProgressBar progressBar;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblProgressBar;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblMostCars;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
@@ -395,5 +406,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBiggestEngines;
+        private System.Windows.Forms.Label lblUserCount;
     }
 }

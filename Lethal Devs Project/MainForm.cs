@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Lethal_Devs_Project
 {
@@ -24,14 +25,16 @@ namespace Lethal_Devs_Project
             int nHeightEllipse
         );
 
-        static SqlConnection conn = new SqlConnection(); //sql csatlakozás objektum
+        private Stopwatch timer = new Stopwatch();
+
+        public Stopwatch Timer { get => timer; set => timer = value; }
 
         bool searchClicked = false;
 
         public MainForm()
         {
             InitializeComponent();
-
+            runtimer();
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
         public void ShowMessage(string title, string message)
@@ -51,6 +54,13 @@ namespace Lethal_Devs_Project
             first_tab.FormBorderStyle = FormBorderStyle.None;
             pnlFormLoader.Controls.Add(first_tab);
             first_tab.Show();
+        }
+
+        public Stopwatch runtimer()
+        { 
+            
+            Timer.Start();
+            return Timer;
         }
 
         //UI DESIGN RÉSZLEG
@@ -129,22 +139,6 @@ namespace Lethal_Devs_Project
         private void btnFourth_Leave(object sender, EventArgs e)
         {
             btnLeaveDesign(btnFourth, picFourth);
-        }
-        private void btnBottom_Click(object sender, EventArgs e)
-        {
-            btnLeaveDesign(btnFirst, picFirst);
-            btnClickDesign(btnBottom, picBottom);
-            lblTitle.Text = "Beállítások";
-
-            pnlFormLoader.Controls.Clear();
-            var bottom_tab = FormsClass.bottomform;
-            bottom_tab.FormBorderStyle = FormBorderStyle.None;
-            pnlFormLoader.Controls.Add(bottom_tab);
-            bottom_tab.Show();
-        }
-        private void btnBottom_Leave(object sender, EventArgs e)
-        {
-            btnLeaveDesign(btnBottom, picBottom);
         }
 
         private void searchBar_Click(object sender, EventArgs e)

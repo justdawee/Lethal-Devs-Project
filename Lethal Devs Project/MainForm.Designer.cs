@@ -30,12 +30,10 @@
         {
             this.exitBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.picBottom = new System.Windows.Forms.PictureBox();
             this.picFourth = new System.Windows.Forms.PictureBox();
             this.picThird = new System.Windows.Forms.PictureBox();
             this.picSecond = new System.Windows.Forms.PictureBox();
             this.picFirst = new System.Windows.Forms.PictureBox();
-            this.btnBottom = new System.Windows.Forms.Button();
             this.btnFourth = new System.Windows.Forms.Button();
             this.btnThird = new System.Windows.Forms.Button();
             this.btnSecond = new System.Windows.Forms.Button();
@@ -48,7 +46,6 @@
             this.pnlFormLoader = new System.Windows.Forms.Panel();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFourth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picThird)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSecond)).BeginInit();
@@ -75,12 +72,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.panel1.Controls.Add(this.picBottom);
             this.panel1.Controls.Add(this.picFourth);
             this.panel1.Controls.Add(this.picThird);
             this.panel1.Controls.Add(this.picSecond);
             this.panel1.Controls.Add(this.picFirst);
-            this.panel1.Controls.Add(this.btnBottom);
             this.panel1.Controls.Add(this.btnFourth);
             this.panel1.Controls.Add(this.btnThird);
             this.panel1.Controls.Add(this.btnSecond);
@@ -92,21 +87,10 @@
             this.panel1.Size = new System.Drawing.Size(186, 577);
             this.panel1.TabIndex = 41;
             // 
-            // picBottom
-            // 
-            this.picBottom.BackColor = System.Drawing.Color.Transparent;
-            this.picBottom.Image = global::Lethal_Devs_Project.Properties.Resources.settings;
-            this.picBottom.Location = new System.Drawing.Point(9, 544);
-            this.picBottom.Name = "picBottom";
-            this.picBottom.Size = new System.Drawing.Size(25, 25);
-            this.picBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picBottom.TabIndex = 0;
-            this.picBottom.TabStop = false;
-            // 
             // picFourth
             // 
             this.picFourth.BackColor = System.Drawing.Color.Transparent;
-            this.picFourth.Image = global::Lethal_Devs_Project.Properties.Resources.calendar;
+            this.picFourth.Image = global::Lethal_Devs_Project.Properties.Resources.server;
             this.picFourth.Location = new System.Drawing.Point(9, 279);
             this.picFourth.Name = "picFourth";
             this.picFourth.Size = new System.Drawing.Size(25, 25);
@@ -117,7 +101,7 @@
             // picThird
             // 
             this.picThird.BackColor = System.Drawing.Color.Transparent;
-            this.picThird.Image = global::Lethal_Devs_Project.Properties.Resources.Conact;
+            this.picThird.Image = global::Lethal_Devs_Project.Properties.Resources.usericon;
             this.picThird.Location = new System.Drawing.Point(9, 236);
             this.picThird.Name = "picThird";
             this.picThird.Size = new System.Drawing.Size(25, 25);
@@ -146,24 +130,6 @@
             this.picFirst.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFirst.TabIndex = 0;
             this.picFirst.TabStop = false;
-            // 
-            // btnBottom
-            // 
-            this.btnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnBottom.FlatAppearance.BorderSize = 0;
-            this.btnBottom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBottom.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.btnBottom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnBottom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBottom.Location = new System.Drawing.Point(0, 535);
-            this.btnBottom.Name = "btnBottom";
-            this.btnBottom.Size = new System.Drawing.Size(186, 42);
-            this.btnBottom.TabIndex = 1;
-            this.btnBottom.Text = "Beállítások";
-            this.btnBottom.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBottom.UseVisualStyleBackColor = false;
-            this.btnBottom.Click += new System.EventHandler(this.btnBottom_Click);
-            this.btnBottom.Leave += new System.EventHandler(this.btnBottom_Leave);
             // 
             // btnFourth
             // 
@@ -337,7 +303,6 @@
             this.Text = "AdminUI";
             this.Load += new System.EventHandler(this.AdminUI_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFourth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picThird)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSecond)).EndInit();
@@ -357,7 +322,6 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnFirst;
-        private System.Windows.Forms.Button btnBottom;
         private System.Windows.Forms.Button btnFourth;
         private System.Windows.Forms.Button btnThird;
         private System.Windows.Forms.Button btnSecond;
@@ -365,7 +329,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlFormLoader;
         private System.Windows.Forms.TextBox searchBar;
-        private System.Windows.Forms.PictureBox picBottom;
         private System.Windows.Forms.PictureBox picFourth;
         private System.Windows.Forms.PictureBox picThird;
         private System.Windows.Forms.PictureBox picSecond;
