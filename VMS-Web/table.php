@@ -1,8 +1,6 @@
 <?php 
 include 'header.php'; 
 
-$_SESSION["currentpage"] = "table";
-
 ?>
 
 <div class="container-fluid">
