@@ -24,6 +24,16 @@ if ($result->num_rows > 0) {
 }
 $result->close();
 
+$sql = "SELECT engine,COUNT(*) AS pcs FROM vehicles GROUP BY engine";
+$result = $mysqli->query($sql);
+
+foreach($result as $data)
+{
+  $engines[] = $data['engine'];
+  $pcs[] = $data['pcs'];
+}
+$result->close();
+
 ?>
 
 <div class="container-fluid">
@@ -104,12 +114,14 @@ $result->close();
                 <div class="card-body text-break text-uppercase">
                     <div class="table-responsive">
                     <?php
+                    $rowcount = 1;
                     $conn = $mysqli;
                         $result = mysqli_query($conn,"SELECT prodyear, type, engine, ccm, owner FROM vehicles ORDER BY ccm DESC");
 
                         echo "<table class='table'>
                         <thead>
                         <tr>
+                        <th>#</th>
                         <th>Típus</th>
                         <th>Motor</th>
                         <th>cm<sup>3</sup></th>
@@ -120,11 +132,13 @@ $result->close();
                         while($row = mysqli_fetch_array($result))
                         {
                         echo "<tr>";
+                        echo "<td>" . $rowcount . "</td>";
                         echo "<td>" . $row['prodyear'] . " " . $row['type'] . "</td>";
                         echo "<td>" . $row['engine'] . "</td>";
                         echo "<td>" . $row['ccm'] . "</td>";
                         echo "<td>" . $row['owner'] . "</td>";
                         echo "</tr>";
+                        $rowcount++;
                         }
                         echo "</table>";
                     ?>
@@ -135,13 +149,56 @@ $result->close();
         <div class="col-lg-5 col-xl-4">
             <div class="card shadow mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="text-primary fw-bold m-0">Motor darab</h6>
+                    <h6 class="text-primary fw-bold m-0">Motor típusok</h6>
                     <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="chart-area"><canvas data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;I4&quot;,&quot;V6&quot;,&quot;V8&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;,&quot;display&quot;:false}}}"></canvas></div>
-                    <div class="text-center small mt-4"><span class="me-2"><i class="fas fa-circle text-primary"></i>&nbsp;I4</span><span class="me-2"><i class="fas fa-circle text-success"></i>&nbsp;V6</span><span class="me-2"><i class="fas fa-circle text-info"></i>&nbsp;V8</span></div>
+                    <div class="chart-area">
+                        <canvas id="enginechart" height="320" style="display: block; width: 257px; height: 320px;" width="257"></canvas>
+                        <script>
+                        const labels = <?php echo json_encode($engines) ?>;
+                        const data = {
+                            labels: labels,
+                            datasets: [{
+                            label: '',
+                            data: <?php echo json_encode($pcs) ?>,
+                            backgroundColor: ['#1ABC9C', '#F1C40F', '#3498DB', '#E74C3C', '#9B59B6', '#34495E', '#95A5A6', '#D35400', '#F39C12'],
+                            hoverBackgroundColor: ['#17a98c', '#d9b00e', '#2f89c5', '#b93d30', '#8c50a4', '#2f4255', '#869595', '#be4c00', '#db8c10'],
+                            hoverBorderColor: "rgba(234, 236, 244, 1)"
+                            }]
+                        };
+
+                        const config = {
+                            type: 'doughnut',
+                            data: data,
+                            options: {
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: true,
+                                    position: 'bottom'
+                                },
+                                tooltips: {
+                                    backgroundColor: "rgb(255,255,255)",
+                                    bodyFontColor: "#858796",
+                                    borderColor: '#dddfeb',
+                                    borderWidth: 1,
+                                    xPadding: 15,
+                                    yPadding: 15,
+                                    displayColors: false,
+                                    caretPadding: 10
+                                },
+                                cutoutPercentage: 80,
+                                responsive: true
+                            },
+                        };
+
+                        var myChart = new Chart(
+                            document.getElementById('enginechart'),
+                            config
+                        );
+                    </script>
+                    </div>
                 </div>
             </div>
         </div>
