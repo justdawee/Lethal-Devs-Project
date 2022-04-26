@@ -1,18 +1,18 @@
 <div id="top"></div>
 
 ![GitHub contributors](https://img.shields.io/github/contributors-anon/justdawee/Lethal-Devs-Project?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/justdawee/Lethal-Devs-Project?style=for-the-badge)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/justdawee/Lethal-Devs-Project?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/JustDawee/Lethal-Devs-Project?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/justdawee/Lethal-Devs-Project?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/justdawee/Lethal-Devs-Project?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/justdawee/Lethal-Devs-Project?style=for-the-badge)
+![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=for-the-badge&up_color=green&up_message=online&url=http%3A%2F%2Fjustdawee.com%2F)
 ![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)
 
-
-
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/justdawee/Lethal-Devs-Project">
-    <img src="VMS-Admin/Lethal Devs Project/Resources/car.png" alt="Logo" width="80" height="80">
+    <img src="VMS-Admin/Lethal Devs Project/Resources/caricon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Vehicle Management System</h3>
