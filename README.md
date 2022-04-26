@@ -8,6 +8,12 @@
 ![GitHub](https://img.shields.io/github/license/justdawee/Lethal-Devs-Project?style=for-the-badge)
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=for-the-badge&up_color=green&up_message=online&url=http%3A%2F%2Fjustdawee.com%2F)
 ![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)
+![CSharp](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
 
 <br />
 <div align="center">
@@ -32,91 +38,78 @@
 </div>
 
 
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![VMS-LethalDevs](https://i.imgur.com/0EbdBVN.png)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-### Built With
-
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+<i>This project is made for my school project, the program is a random idea. I like cars so I thought why not I make an app where you can store vehicles and data related to them. Thats how the Vehicle Management System comes from. This app builds from a Desktop Application that is made in C# (Windows Forms Application), in there you can manage the database line an Admin UI. The main app is a webpage where users can register, login and add their vehicles to the database. The user can only see vehicles added by itself, cant see every records. That's it unfortunately... If I had more time, I make it more complex or better... :) </i>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To use this application, you will need several things...
+At first, you will need a Webserver and a MySQL server, I recommend XAMPP for this purpose, but you can use any web service out there.
+After you installed the web+sql server, you need to setup the webfiles and mysql database.
+Add files from VMS-Web to your webserver htdocs folder, and after that, import the included database file what you can find in VMS-SQL.
+If these are done, basically you can use the software, but if you want to manage it from the Windows Application, you need to do some other things.
+At first, download the latest relase from the repository, and install the required dependencies.
+
+For further info follow Installation steps below...
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Apache/Nginx <br>
+PHP 7.4.29 or higher <br>
+MySQL/MariaDB <br>
+<a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472">.NET Framework 4.7.2</a> (Desktop App)<br>
+<a href="https://www.apachefriends.org/hu/download.html">XAMPP</a> (optional webserver)<br>
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Install Prerequisites
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/justdawee/Lethal-Devs-Project.git
    ```
-3. Install NPM packages
+3. Put files from VMS-Web
    ```sh
-   npm install
+   Copy VMS-Web files to your htdocs folder.
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Setup MySQL Database
+   ```sh
+   Go to phpmyadmin and create a database 'vms_lethaldevs' or preffered name.
+   Then import the included .sql file. You can find it in VMS-SQL folder.
    ```
-
+5. Check config files
+   ```sh
+   Check data in config.php, if data does not match with yours, change it.
+   ```
+6. Desktop app setup
+   ```sh
+   Download the desktop app from relases, if success follow next steps.
+   ```
+7. Change default MySQL settings
+   ```sh
+   Go to app directory and find 'Lethal Devs Project.exe.config' and edit it with text editor.
+   Inside the file, search <Lethal_Devs_Project.Properties.Settings> and below that line, you will find the default MySQL settings.
+   Change them according to your mysql server data.
+   Save file.
+   ```
+8. Start Desktop App
+   ```sh
+   If the MySQL connection settings are correct, you should login with your account.
+   You can only login in the Desktop app if you are an Admin, you can make yourself admin by changing
+   the field in the 'users' table in mysql, find your record and change 'admin' entry from 0 to 1.
+   After that you should login without any issues.
+   ```
+9. Done
+   ```sh
+   The desktop app is independent of the web app, it made only for admin purpose.
+   If you have any issue, write one in the issues section. Thhanks.
+   Enjoy.
+   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
