@@ -116,7 +116,7 @@ $result->close();
                     <?php
                     $rowcount = 1;
                     $conn = $mysqli;
-                        $result = mysqli_query($conn,"SELECT prodyear, type, engine, ccm, owner FROM vehicles ORDER BY ccm DESC");
+                        $result = mysqli_query($conn,"SELECT prodyear, type, engine, ccm, owner FROM vehicles ORDER BY ccm DESC LIMIT 10");
 
                         echo "<table class='table'>
                         <thead>

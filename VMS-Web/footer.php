@@ -8,6 +8,8 @@
         </div><!-- content-wrapper end-->
         <a class="scroll-to-top rounded" href="#page-top"> <i class="fas fa-angle-up"></i></a> 
     </div> <!-- wrapper end-->
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/theme.js"></script>
 </body> <!-- page-top end-->
 </html>
 
