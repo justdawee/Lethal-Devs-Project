@@ -11,22 +11,18 @@ include 'header.php';
         </div>
         <div class="card-body">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-            <script>
-                var table = $('#vehicles').DataTable();
-                table.rows( { search: '<?php echo $_SESSION['realname'] ?>' } ).select()
-            </script>
             <table cellpadding="0" cellspacing="0" border="0" class="table table-striped" id="vehicles" width="100%">
                 <thead>
                     <tr>
-                        <th>&Eacute;vj&aacute;rat</th>
-                        <th>T&iacute;pus</th>
+                        <th>Évjárat</th>
+                        <th>Típus</th>
                         <th>Motor</th>
-                        <th>K&ouml;bcenti</th>
-                        <th>&Uuml;zemanyag</th>
-                        <th>Sz&iacute;n</th>
-                        <th>Fut&aacute;sadat</th>
-                        <th>Rendsz&aacute;m</th>
-                        <th>Alv&aacute;zsz&aacute;m</th>
+                        <th>Köbcenti</th>
+                        <th>Üzemanyag</th>
+                        <th>Szín</th>
+                        <th>Futásadat</th>
+                        <th>Rendszám</th>
+                        <th>Alvázszám</th>
                     </tr>
                 </thead>
             </table>

@@ -17,10 +17,10 @@ use
 Editor::inst( $db, 'vehicles', 'vehid' )
 	->fields(
 		Field::inst( 'owner' )
-			->validator( Validate::notEmpty() ),
+			->set( false ),
 		Field::inst( 'prodyear' )
 			->validator( Validate::notEmpty() )
-			->validator( Validate::minMaxNum( 1, 2999 ) ),
+			->validator( Validate::minMaxNum( 1000, 2999 ) ),
 		Field::inst( 'type' )
 			->validator( Validate::notEmpty() )
 			->validator( Validate::maxLen( 255 ) ),
@@ -38,7 +38,7 @@ Editor::inst( $db, 'vehicles', 'vehid' )
 			->validator( Validate::maxLen( 7 ) ),
 		Field::inst( 'license' )
 			->validator( Validate::notEmpty() )
-			->validator( Validate::maxLen( 6 ) ),
+			->validator( Validate::minMaxLen( 6, 6 ) ),
 		Field::inst( 'vin' )
 			->validator( Validate::notEmpty() )
 			->validator( Validate::minMaxLen( 17, 17 ) )
