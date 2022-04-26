@@ -74,38 +74,39 @@ MySQL/MariaDB <br>
    git clone https://github.com/justdawee/Lethal-Devs-Project.git
    ```
 3. Put files from VMS-Web
-   ```sh
+   ```
    Copy VMS-Web files to your htdocs folder.
    ```
 4. Setup MySQL Database
-   ```sh
+   ```
    Go to phpmyadmin and create a database 'vms_lethaldevs' or preffered name.
    Then import the included .sql file. You can find it in VMS-SQL folder.
    ```
 5. Check config files
-   ```sh
+   ```
    Check data in config.php, if data does not match with yours, change it.
    ```
 6. Desktop app setup
-   ```sh
+   ```
    Download the desktop app from relases, if success follow next steps.
    ```
 7. Change default MySQL settings
-   ```sh
+   ```
    Go to app directory and find 'Lethal Devs Project.exe.config' and edit it with text editor.
-   Inside the file, search <Lethal_Devs_Project.Properties.Settings> and below that line, you will find the default MySQL settings.
+   Inside the file, search <Lethal_Devs_Project.Properties.Settings>
+   and below that line, you will find the default MySQL settings.
    Change them according to your mysql server data.
    Save file.
    ```
 8. Start Desktop App
-   ```sh
+   ```
    If the MySQL connection settings are correct, you should login with your account.
    You can only login in the Desktop app if you are an Admin, you can make yourself admin by changing
    the field in the 'users' table in mysql, find your record and change 'admin' entry from 0 to 1.
    After that you should login without any issues.
    ```
 9. Done
-   ```sh
+   ```
    The desktop app is independent of the web app, it made only for admin purpose.
    If you have any issue, write one in the issues section. Thhanks.
    Enjoy.
