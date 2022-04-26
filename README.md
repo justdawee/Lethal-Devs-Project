@@ -4,7 +4,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/justdawee/Lethal-Devs-Project?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/justdawee/Lethal-Devs-Project?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/justdawee/Lethal-Devs-Project?style=for-the-badge)
-[![LinkedIn][https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white]][https://www.linkedin.com/in/justdawee]
+![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)
 
 
 
