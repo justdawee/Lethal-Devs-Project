@@ -33,7 +33,6 @@ foreach($result as $data)
   $pcs[] = $data['pcs'];
 }
 $result->close();
-
 ?>
 
 <div class="container-fluid">

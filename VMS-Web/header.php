@@ -33,7 +33,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    
+    <!-- DataTables dependencies -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jqc-1.12.4/moment-2.18.1/dt-1.11.5/b-2.2.2/date-1.1.2/r-2.2.9/sc-2.0.5/sl-1.3.4/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="css/generator-base.css">
+    <link rel="stylesheet" type="text/css" href="css/editor.bootstrap5.min.css">
+
+    <script type="text/javascript" charset="utf-8" src="https://cdn.datatables.net/v/bs5/jqc-1.12.4/moment-2.18.1/dt-1.11.5/b-2.2.2/date-1.1.2/r-2.2.9/sc-2.0.5/sl-1.3.4/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/dataTables.editor.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/editor.bootstrap5.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/table.vehicles.js"></script>
 </head>
 <body id="page-top">
     <div id="wrapper">
