@@ -1,5 +1,4 @@
 <?php
-// Initialize the session
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
@@ -8,7 +7,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
  
-// Include config file
 require_once "config.php";
  
 // Define variables and initialize with empty values
@@ -66,19 +64,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             $_SESSION["realname"] = $name;
 
-                            // Redirect user to index page
                             header("location: index.php");
                         } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
+                            $login_err = "Hibás felhasználónév/jelszó.";
                         }
                     }
                 } else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
+                    $login_err = "Hibás felhasználónév/jelszó.";
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Váratlan hiba történt! Próbálkozz később...";
             }
 
             // Close statement
@@ -119,12 +114,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Üdvözöllek!</h1>
                                     </div>
+
                                     <?php 
                                     if(!empty($login_err)){
                                         echo '<div class="alert alert-danger">' . $login_err . '</div>';
                                     }        
                                     ?>
-
+                                    
                                     <form class="user" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                         <div class="form-group">
                                             <input type="text" name="username" class="form-control form-control-user <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>" placeholder="Felhasználónév">

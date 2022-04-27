@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
+        $username_err = "Kérem adjon meg egy felhasználónevet.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
         $username_err = "A felhasználónév csak betűket és számokat tartalmazhat.";
     } else{
@@ -155,7 +155,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             else {
                 $param_address = $postalcode . ' ' . $city . ', ' . $street . '.';
             }
-            
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
