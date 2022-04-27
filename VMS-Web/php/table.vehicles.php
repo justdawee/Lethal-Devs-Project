@@ -17,8 +17,7 @@ use
 // Build our Editor instance and process the data coming from _POST
 Editor::inst( $db, 'vehicles', 'vehid' )
 	->fields(
-		Field::inst( 'owner' )
-			->set( false ),
+		Field::inst( 'owner' ),
 		Field::inst( 'prodyear' )
 			->validator( Validate::notEmpty() )
 			->validator( Validate::minMaxNum( 1000, 2999 ) ),
@@ -44,6 +43,16 @@ Editor::inst( $db, 'vehicles', 'vehid' )
 			->validator( Validate::notEmpty() )
 			->validator( Validate::minMaxLen( 17, 17 ) )
 	)
+	->on( 'preCreate', function ( $editor, &$values ) {
+        $editor
+            ->field( 'owner' )
+            ->setValue( $_SESSION['realname'] );
+    } )
+    ->on( 'preEdit', function ( $editor, $id, &$values ) {
+        $editor
+			->field( 'owner' )
+			->setValue( $_SESSION['realname'] );
+    } )
 	->where("owner", $_SESSION['realname'])
 	->process( $_POST )
 	->json();

@@ -3,20 +3,27 @@
  * Editor client script for DB table vehicles
  * Created by http://editor.datatables.net/generator
  */
+var realname = "<?php echo json_encode($_SESSION['realname']) ?>;"
 
 (function($){
 
 $(document).ready(function() {
+
 	var editor = new $.fn.dataTable.Editor( {
 		ajax: 'php/table.vehicles.php',
 		table: '#vehicles',
 		fields: [
 			{
-				"label": "&Eacute;vj&aacute;rat:",
+				"label": "Tulaj:",
+				"name": "owner",
+				"type": "hidden",
+			},
+			{
+				"label": "Évjárat:",
 				"name": "prodyear"
 			},
 			{
-				"label": "T&iacute;pus:",
+				"label": "Típus:",
 				"name": "type"
 			},
 			{
@@ -43,26 +50,26 @@ $(document).ready(function() {
 					"V16",
 					"Wankel",
 					"Electric",
-					"Egy\u00e9b"
+					"Egyéb"
 				]
 			},
 			{
-				"label": "K&ouml;bcenti:",
+				"label": "Köbcenti:",
 				"name": "ccm"
 			},
 			{
-				"label": "&Uuml;zemanyag:",
+				"label": "Üzemanyag:",
 				"name": "fueltype",
 				"type": "select",
 				"options": [
 					"Benzin",
-					"D\u00edzel",
+					"Dízel",
 					"Elektromos",
-					"Benzin + G\u00e1z",
+					"Benzin + Gáz",
 					"Hibrid (Benzin)",
-					"Hibrid (D\u00edzel)",
-					"Hidrog\u00e9ncella",
-					"Egy\u00e9b"
+					"Hibrid (Dízel)",
+					"Hidrogéncella",
+					"Egyéb"
 				]
 			},
 			{
@@ -70,36 +77,88 @@ $(document).ready(function() {
 				"name": "color",
 				"type": "select",
 				"options": [
-					"Feh\u00e9r",
+					"Fehér",
 					"Fekete",
-					"Sz\u00fcrke",
-					"Ez\u00fcst",
-					"K\u00e9k",
+					"Szürke",
+					"Ezüst",
+					"Kék",
 					"Piros",
-					"Z\u00f6ld",
-					"S\u00e1rga",
+					"Zöld",
+					"Sárga",
 					"Barna",
 					"Lila",
-					"R\u00f3zsasz\u00edn",
-					"Narancss\u00e1rga"
+					"Rózsaszín",
+					"Narancssárga"
 				]
 			},
 			{
-				"label": "Fut&aacute;sadat:",
+				"label": "Futásadat:",
 				"name": "mileage"
 			},
 			{
-				"label": "Rendsz&aacute;m:",
+				"label": "Rendszám:",
 				"name": "license"
 			},
 			{
-				"label": "Alv&aacute;zsz&aacute;m:",
+				"label": "Alvázszám:",
 				"name": "vin"
 			}
-		]
+		],
+		i18n: {
+            create: {
+                button: "Új",
+                title:  "Jármű hozzáadása",
+                submit: "Hozzáadás"
+            },
+            edit: {
+                button: "Módosítás",
+                title:  "Jármű módosítása",
+                submit: "Szerkesztés"
+            },
+            remove: {
+                button: "Törlés",
+                title:  "Törlés",
+                submit: "Törlés",
+                confirm: {
+                    _: "Biztosan törölni szeretnéd ezt a %d db járművet?",
+                    1: "Biztosan törölni szeretnéd ezt az 1 db járművet?"
+                }
+            },
+            error: {
+                system: "Váratlan hiba történt."
+            }
+        }
 	} );
 
 	var table = $('#vehicles').DataTable( {
+		language: {
+            processing:     "Feldolgozás...",
+			search:         "Keresés:",
+			lengthMenu:     "_MENU_ találat oldalanként",
+			info:           "Találatok: _START_-től _END_-ig. Összesen: _TOTAL_",
+			infoEmpty:      "Nulla találat",
+			infoFiltered:   "(_MAX_ közül szűrve)",
+			infoPostFix:    "",
+			loadingRecords: "Betöltés...",
+			zeroRecords:    "Nincs a keresésnek megfelelő találat",
+			emptyTable:     "Nincs járműve az adatbázisban.",
+			paginate: {
+				first:      "Első",
+				previous:   "Előző",
+				next:       "Következő",
+				last:       "Utolsó"
+			},
+			aria: {
+				sortAscending:  ": aktiválja a növekvő rendezéshez",
+				sortDescending: ": aktiválja a csökkenő rendezéshez"
+			},
+			select: {
+				rows: {
+					_: "%d jármű kiválasztva",
+					1: "1 jármű kiválasztva"
+				}
+			}
+        },
 		ajax: 'php/table.vehicles.php',
 		columns: [
 			{
