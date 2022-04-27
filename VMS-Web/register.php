@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
-        $username_err = "Username can only contain letters, numbers, and underscores.";
+        $username_err = "A felhasználónév csak betűket és számokat tartalmazhat.";
     } else{
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = ?";
@@ -31,12 +31,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $stmt->store_result();
                 
                 if($stmt->num_rows == 1){
-                    $username_err = "This username is already taken.";
+                    $username_err = "Ez a felhasználónév már foglalt.";
                 } else{
                     $username = trim($_POST["username"]); //if not taken set username
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Váratlan hiba történt! Próbálkozzon később.";
             }
 
             // Close statement
@@ -46,85 +46,85 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate password
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
+        $password_err = "Kérem adjon meg egy jelszót.";     
     } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have atleast 6 characters.";
+        $password_err = "A jelszónak legalább 6 karakternek kell legyen.";
     } else{
         $password = trim($_POST["password"]);
     }
     
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
+        $confirm_password_err = "Kérem erősítse meg a jelszavát.";     
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "A jelszó nem egyezik.";
         }
     }
 
     // Validate first name
     if(empty(trim($_POST["firstname"]))){
-        $firstname_err = "Please enter Firstname.";
+        $firstname_err = "Kérem adja meg a Vezetéknevét.";
     } elseif(!preg_match('/^\\pL+$/u', trim($_POST["firstname"]))){
-        $firstname_err = "Name can only contain letters.";
+        $firstname_err = "A név csak betűkből állhat.";
     } else{
         $firstname = trim($_POST["firstname"]);
     }
 
     // Validate second name
     if(empty(trim($_POST["lastname"]))){
-        $lastname_err = "Please enter Lastname.";     
+        $lastname_err = "Kérem adja meg a Keresztnevét.";     
     } elseif(!preg_match('/^\\pL+$/u', trim($_POST["lastname"]))){
-        $lastname_err = "Name can only contain letters.";
+        $lastname_err = "A név csak betűkből állhat.";
     } else{
         $lastname = trim($_POST["lastname"]);
     }
 
     // Validate phone number
     if(empty(trim($_POST["phone"]))){
-        $phone_err = "Please enter Phonenumber.";     
+        $phone_err = "Kérem adjon meg egy telefonszámot.";     
     } elseif(!preg_match('/^[0-9_]+$/', trim($_POST["phone"]))){
-        $phone_err = "Phone number can only contain numbers.";
+        $phone_err = "A telefonszám csak számokból állhat.";
     } else{
         $phone = trim($_POST["phone"]);
     }
 
     // Validate email
     if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter Email.";     
+        $email_err = "Kérem adja meg az email címét.";     
     } else{
         $email = trim($_POST["email"]);
     }
 
     // Validate borndate
     if(empty(trim($_POST["borndate"]))){
-        $borndate_err = "Please enter Borndate.";     
+        $borndate_err = "Kérem adja meg a születési dátumát.";     
     } else{
         $borndate = trim($_POST["borndate"]);
     }
 
     // Validate postal code
     if(empty(trim($_POST["postalcode"]))){
-        $postalcode_err = "Please enter Postal code.";     
+        $postalcode_err = "Kérem adjon meg egy irányítószámot.";     
     } elseif(!preg_match('/^[0-9]+$/', trim($_POST["postalcode"]))){
-        $postalcode_err = "Postal code can only contain numbers.";
+        $postalcode_err = "Az irányítószám csak szám lehet.";
     } else{
         $postalcode = trim($_POST["postalcode"]);
     }
 
     // Validate city
     if(empty(trim($_POST["city"]))){
-        $city_err = "Please enter City.";     
+        $city_err = "Kérem adja meg a Várost.";     
     } else{
         $city = trim($_POST["city"]);
     }
 
     // Validate street
     if(empty(trim($_POST["street"]))){
-        $street_err = "Please enter Street.";     
+        $street_err = "Kérem adjon meg egy címet.";     
     } elseif(!preg_match('/([a-zA-Z0-9])/', trim($_POST["street"]))){
-        $street_err = "Street can only contain letters and numbers.";
+        $street_err = "Az utcanév csak betűket és számokat tartalmazhat.";
     } else{
         $street = trim($_POST["street"]);
     }
@@ -162,7 +162,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Redirect to login page
                 header("location: login.php");
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Váratlan hiba történt!";
             }
 
             // Close statement
@@ -193,7 +193,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-primary">
     <div class="container">
@@ -205,15 +205,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Hozzon létre egy fiókot!</h1>
                             <form class="user" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="firstname" class="form-control form-control-user <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>" placeholder="First Name">
+                                        <input type="text" name="firstname" class="form-control form-control-user <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>" placeholder="Vezetéknév">
                                         <span class="invalid-feedback"><?php echo $firstname_err; ?></span>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="lastname" class="form-control form-control-user <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastname; ?>" placeholder="Last Name">
+                                        <input type="text" name="lastname" class="form-control form-control-user <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastname; ?>" placeholder="Keresztnév">
                                         <span class="invalid-feedback"><?php echo $lastname_err; ?></span>
                                     </div>
                                 </div>
@@ -232,7 +232,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control form-control-user <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" placeholder="Email Address">
+                                    <input type="email" name="email" class="form-control form-control-user <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" placeholder="Email cím">
                                     <span class="invalid-feedback"><?php echo $email_err; ?></span>
                                 </div>
                                 <div class="form-group row">
@@ -260,9 +260,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <span class="invalid-feedback"><?php echo $street_err; ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
+                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Regisztrálás">
                                 </div>
-                                <p>Already have an account? <a href="login.php">Login here</a>.</p>
+                                <p>Már van fiókja? <a href="login.php">Jelentkezzen be</a>.</p>
                             </form>
                         </div>
                     </div>
