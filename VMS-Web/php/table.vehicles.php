@@ -1,4 +1,5 @@
 <?php
+session_start();
 // DataTables PHP library and database connection
 include( "lib/DataTables.php" );
 
@@ -43,5 +44,7 @@ Editor::inst( $db, 'vehicles', 'vehid' )
 			->validator( Validate::notEmpty() )
 			->validator( Validate::minMaxLen( 17, 17 ) )
 	)
+	->where("owner", $_SESSION['realname'])
 	->process( $_POST )
 	->json();
+
