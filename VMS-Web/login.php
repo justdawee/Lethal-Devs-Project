@@ -136,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.php">Elfelejtett jelszó?</a>
+                                        <a class="small" href="">Elfelejtett jelszó?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="register.php">Hozz létre egy fiókot!</a>
