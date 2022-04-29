@@ -26,7 +26,7 @@
   <p align="center">
     This is a Vehicle Database where you can add your vehicles, and get some statistics about them.
     <br />
-    <a href="https://github.com/justdawee/Lethal-Devs-Project/Docs/Dokumentacio.pdf"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/justdawee/Lethal-Devs-Project/blob/master/Documents/Lethal%20Devs%20Project%20Dokument%C3%A1ci%C3%B3.pdf"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/justdawee/Lethal-Devs-Project">View Demo</a>
