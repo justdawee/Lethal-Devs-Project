@@ -98,7 +98,7 @@ namespace Lethal_Devs_Project
             var regdate = regDatePicker.Value;
             var admin = checkAdmin();
 
-            var command = "UPDATE users SET username = '" + username + "', name = '" + name + "', address = '" + address + "', birthdate = '" + birthdate.ToString("yyyy-MM-dd") + "', email = '" + email + "', phone = '" + phone + "', regdate = '" + regdate.ToString("yyyy-MM-dd HH:mm:ss") + "', admin = '" + admin + "' WHERE users.id = " + uid + ";";
+            var command = "UPDATE users SET username = '" + username + "', name = '" + name + "', address = '" + address + "', birthdate = '" + birthdate.ToString("yyyy-MM-dd") + "', email = '" + email + "', phonenumber = '" + phone + "', regdate = '" + regdate.ToString("yyyy-MM-dd HH:mm:ss") + "', admin = '" + admin + "' WHERE users.id = " + uid + ";";
             conn.Query(command);
 
             panel.ShowMessage("A jármű módosítása felkerült az adatbázisba.", "Siker");
