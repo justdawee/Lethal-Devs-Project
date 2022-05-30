@@ -49,7 +49,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
   `admin` int(1) NOT NULL DEFAULT 0,
-  `birthdate` date NOT NULL DEFAULT current_timestamp(),
+  `birthdate` datetime NOT NULL DEFAULT current_timestamp(),
   `address` varchar(120) COLLATE utf8_hungarian_ci NOT NULL,
   `regdate` datetime NOT NULL DEFAULT current_timestamp(),
   `lastvisit` datetime NOT NULL DEFAULT current_timestamp(),
